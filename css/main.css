@@ -281,6 +281,37 @@ h2::after {
     }
 }
 
+/** Program Event **/
+.program {
+    position: relative;
+}
+.program-content {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+}
+.video-container {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+.program-event {
+    background-color: #ffffff93;
+    padding: 1rem;
+    margin-top: 5rem;
+}
+@media (min-width: 768px) {
+    .program-event {
+        width: 70%;
+    }
+}
+    
+@media (min-width: 992px) {
+    .program-event {
+        width: 50%;
+    }  
+}
+
 
 
 
