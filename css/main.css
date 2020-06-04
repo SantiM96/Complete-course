@@ -124,6 +124,11 @@ h2::after {
     height: 3rem;
     margin: 0 auto;
 }
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
 
 /** Utilites **/
 .container {
@@ -152,6 +157,28 @@ h2::after {
 .section p {
     font-size: 1.7rem;
     text-align: center;
+}
+.button {
+    background-color: #fe4118;
+    color: white;
+    padding: 1rem 3rem;
+    font-weight: bold;
+    font-family: 'Oswald', sans-serif;
+    font-size: 2rem;
+    border-radius: 0.3rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: block;
+    text-align: center;
+}
+@media (min-width: 480px) {
+    .button {
+        display: inline;
+    }
+}
+.button:hover {
+    background-color: #e33000;
+    transition: 0.3s;
 }
 
 
@@ -292,26 +319,137 @@ h2::after {
     width: 100%;
 }
 .video-container {
-    max-width: 100%;
-    overflow-x: hidden;
+    max-width: 100%; 
+    height: 120vh;
+    overflow: hidden;
+}
+@media (min-width: 1182px) {
+    .video-container {
+        height: unset;
+    }
+    .video-container video{
+        width: 100%;
+    }
 }
 .program-event {
-    background-color: #ffffff93;
+    background-color: #ffffffd0;
     padding: 1rem;
-    margin-top: 5rem;
+    margin-top: 0.5rem;
+}
+@media (min-width: 1210px) {
+    .program-event {
+        margin-top: 2rem;
+    }
 }
 @media (min-width: 768px) {
     .program-event {
         width: 70%;
     }
 }
-    
 @media (min-width: 992px) {
     .program-event {
         width: 50%;
     }  
 }
+.program-menu {
+    border-bottom: 2px solid #fe4118;
+}
+.program-menu a {
+    display: block;
+    color: black;
+    text-decoration: none;
+    padding: 1rem 0;
+    font-size: 2.3rem;
+    font-family: 'Oswald', sans-serif;
+    flex: 1;
+    text-align: center;
+}
+.program-menu a:hover {
+    background-color: #ececec;
+}
+@media (min-width: 768px) {
+    .program-menu {
+        display: flex;
+        justify-content: space-evenly;
+    }
+}
+.program-menu i,
+.details-event i {
+    color: #fe4118;
+    margin-right: 1rem;
+}
+.program-menu a i {
+    font-size: 2.5rem;
+}
+.bord-bot {
+    border-bottom: 2px solid #fe4918;
+}
+.bord-bot p:last-child {
+    margin-bottom: 2rem;
+}
+.details-event h3 {
+    font-size: 1.8rem;
+    color: #fe4118;
+}
+.details-event p {
+    margin: 2rem 0 0 2rem;
+    font-size: 1.5rem;
+}
+.details-event p i {
+    font-size: 1.8rem;
+}
+.button-event {
+    display: block;
+    margin: 4rem 0 1rem 0;
+}
+@media (min-width: 480px) {
+    .button-event {
+        margin: 3rem 0 1rem 0;
+        text-align: end;
+    }
+}
 
+/** Guests **/
+.guests-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+}
+@media (min-width: 768px) {
+    .guests-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+.guest {
+    position: relative;
+}
+.guest img {
+    max-width: 100%;
+    -webkit-filter: grayscale(1);
+}
+.guest img:hover {
+    -webkit-filter: grayscale(0);
+    -webkit-transition: 0.7s;
+}
+.guest:hover {
+    -webkit-transition: 0.7s;
+    -webkit-transform:scale(1.1)
+}
+.guest p {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    padding: 1rem 2rem;
+    background-color: #0000008c;
+    width: 100%;
+    text-align: left;
+    color: #fe4918;
+    font-family: 'Oswald', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 2rem;
+}
 
 
 
