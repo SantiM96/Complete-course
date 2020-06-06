@@ -170,6 +170,7 @@ ul {
     text-transform: uppercase;
     display: block;
     text-align: center;
+    transition: 0.3s;
 }
 @media (min-width: 480px) {
     .button {
@@ -178,7 +179,6 @@ ul {
 }
 .button:hover {
     background-color: #e33000;
-    transition: 0.3s;
 }
 
 
@@ -422,25 +422,28 @@ ul {
 }
 .guest {
     position: relative;
+    overflow: hidden;
 }
 .guest img {
     max-width: 100%;
-    -webkit-filter: grayscale(1);
 }
-.guest img:hover {
+@media (min-width: 768px) {
+    .guest img {
+        -webkit-filter: grayscale(1);
+        -webkit-transition: all 0.7s ease;
+        transition: all 0.7s ease;
+    }
+}
+.guest:hover img {
     -webkit-filter: grayscale(0);
-    -webkit-transition: 0.7s;
-}
-.guest:hover {
-    -webkit-transition: 0.7s;
-    -webkit-transform:scale(1.1)
+    -webkit-transform: scale(1.1);
 }
 .guest p {
     position: absolute;
     bottom: 0;
     left: 0;
     margin: 0;
-    padding: 1rem 2rem;
+    padding: 0.3rem 0.5rem;
     background-color: #0000008c;
     width: 100%;
     text-align: left;
@@ -448,9 +451,79 @@ ul {
     font-family: 'Oswald', sans-serif;
     font-weight: bold;
     text-transform: uppercase;
-    font-size: 2rem;
+    font-size: 1.3rem;
+    -webkit-transition: all 0.7s ease;
+    transition: all 0.7s ease;
+}
+@media (min-width: 768px) {
+    .guest p {
+        font-size: 2rem;
+        padding: 1rem 2rem;
+    }
+}
+.guest:hover p {
+    bottom: -5rem;
+    opacity: 0;
+}
+@media (min-width: 768px) {
+    .guest:hover p {
+        bottom: 0;
+        opacity: 1;
+        background-color: #00000050;
+        font-size: 1.6rem;
+        padding: 0.2rem 0.5rem;
+        transition: all 0.7s ease;
+    }
+}
+@media (min-width: 1215px) {
+    .guest:hover p {
+        width: 44%;
+        font-size: 1.6rem;
+        padding: 0.4rem 1rem;
+    }
 }
 
+/** accountant **/
+.accountant {
+    background-image: url(../img/bg-resumen.jpg);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    height: 35rem;
+}
+.accountant::before {
+    content: '';
+    background-color: #00000056;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.summary-event {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    position: relative;
+    height: 35rem;
+}
+@media (min-width: 768px) {
+    .summary-event {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+.summary-event li {
+    align-self: center;
+    text-align: center;
+    font-size: 2.5rem;
+    font-family: 'Oswald', sans-serif;
+    color: white;
+    text-transform: uppercase;
+}
+.number-sum {
+    font-size: 9rem;
+    margin: 0;
+    color: #fe4118;
+}
 
 
    
