@@ -531,11 +531,20 @@ ul {
 }
 
 /** Price **/
+.price-list {
+    width: 80%;
+}
+@media (min-width: 480px) {
+    .price-list {
+        width: 60%;
+    }
+}
 @media (min-width: 768px) {
     .price-list {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 2rem;
+        width: 100%;
     }
 }
 .price-table {
@@ -543,6 +552,7 @@ ul {
     background-color: #ffffff;
     border: 2px solid #e1e1e1;
     transition: all .3s ease;
+    margin-bottom: 2rem;
 }
 .price-table:hover {
     transform: scale(1.05);
