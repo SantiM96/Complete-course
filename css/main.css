@@ -171,6 +171,8 @@ ul {
     display: block;
     text-align: center;
     transition: 0.3s;
+    line-height: 2.3;
+    border: 2px solid #fe4118;
 }
 @media (min-width: 480px) {
     .button {
@@ -179,8 +181,15 @@ ul {
 }
 .button:hover {
     background-color: #e33000;
+    color: white;
+    border: 2px solid #e33000;
 }
-
+.number {
+    font-size: 9rem !important;
+    margin: 0;
+    color: #fe4118;
+    font-family: 'Oswald', sans-serif;
+}
 
 /** Header **/
 .hero {
@@ -400,11 +409,11 @@ ul {
 }
 .button-event {
     display: block;
-    margin: 4rem 0 1rem 0;
+    margin: 4rem 0 0 0;
 }
 @media (min-width: 480px) {
     .button-event {
-        margin: 3rem 0 1rem 0;
+        margin: 3rem 0 .25rem 0;
         text-align: end;
     }
 }
@@ -483,13 +492,14 @@ ul {
     }
 }
 
-/** accountant **/
+/** Accountant **/
 .accountant {
     background-image: url(../img/bg-resumen.jpg);
     background-position: center;
     background-size: cover;
     position: relative;
     height: 35rem;
+    background-attachment: fixed;
 }
 .accountant::before {
     content: '';
@@ -519,11 +529,62 @@ ul {
     color: white;
     text-transform: uppercase;
 }
-.number-sum {
-    font-size: 9rem;
-    margin: 0;
+
+/** Price **/
+@media (min-width: 768px) {
+    .price-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+}
+.price-table {
+    text-align: center;
+    background-color: #ffffff;
+    border: 2px solid #e1e1e1;
+    transition: all .3s ease;
+}
+.price-table:hover {
+    transform: scale(1.05);
+    box-shadow: #868686 0rem 0rem 1rem 0.5rem;
+}
+.price-table h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.8rem;
+    margin: 2.5rem 0 0 0;
+    text-align: center;
+    color: #fe4918;
+    text-transform: uppercase;
+}
+.price-table p {
+    margin-bottom: 1rem;
+    color: black;
+}
+.ticks li {
+    font-family: 'PT Sans', sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+    font-size: 1.3rem;
+    color: #575757;
+    text-align: center;
+}
+.ticks li::before {
+    font-family: 'fontAwesome';
+    content: '\f00c';
+    color: green;
+    font-size: 1.5rem;
+    padding-right: 0.5rem;
+}
+.button-price {
+    display: inline-block;
+    line-height: 1.5;
+    margin: 2rem 0 4rem 0;
+}
+.hollow {
+    background-color: white;
     color: #fe4118;
 }
+
 
 
    
