@@ -734,6 +734,21 @@ ul {
     border: 2px solid white;
 }
 
+/** Countdown **/
+.countdown ul {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 2rem;
+}
+.countdown ul li {
+    align-self: center;
+    text-align: center;
+    font-size: 2.5rem;
+    font-family: 'Oswald', sans-serif;
+    color: black;
+    text-transform: uppercase;
+}
+
 
    
 
