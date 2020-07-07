@@ -749,6 +749,43 @@ ul {
     text-transform: uppercase;
 }
 
+/** Footer **/
+.main-footer {
+    background-color: #353535;
+    color: white;
+}
+.main-footer section {
+    display: flex;
+    justify-content: space-between;
+    padding: 2.5rem 0;
+}
+.main-footer section div {
+    flex-basis: calc(33.3% - 2rem);
+}
+.main-footer section h3 {
+    font-size: 2rem;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    margin: 0;
+}
+.main-footer section p {
+    font-size: 1.15rem;
+}
+.main-footer section h3 span {
+    color: #fe4118;
+}
+.sn-footer {
+    text-align: left;
+    margin-top: 1rem;
+}
+.copyright {
+    background-color: #2e2e2e;
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 0.2rem 0;
+    margin: 0;
+}
+
 
    
 
