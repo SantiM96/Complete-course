@@ -1,7 +1,47 @@
-(function () {
-    'use strict';
+$(function() {
+    'use strict'
 
-    
+    //Programa del Evento
+    $('nav a').click(programEvent);
+
+    $('.program-event nav a:first').css({ 'background-color': 'rgb(240, 240, 240)' });
+
+    function programEvent() { 
+        $('#talleres').css({ 'display': 'none' });
+        $('#conferencias').css({ 'display': 'none' });
+        $('#seminarios').css({ 'display': 'none' });
+
+        $('.program-event nav a').css({ 'background-color': 'white' });
+
+
+        if (this == $('.program-event nav a')[0]) {
+            $('#talleres').css({ 'display': 'inline' });
+            $(this).css({ 'background-color': 'rgb(240, 240, 240)' });
+        }
+        if (this == $('.program-event nav a')[1]) {
+            $('#conferencias').css({ 'display': 'inline' });
+            $(this).css({ 'background-color': 'rgb(240, 240, 240)' });
+        }
+        if (this == $('.program-event nav a')[2]) {
+            $('#seminarios').css({ 'display': 'inline' });
+            $(this).css({ 'background-color': 'rgb(240, 240, 240)' });
+        }
+
+    }       
+});
+
+
+
+
+
+
+
+/*
+
+
+(function() {
+    'use strict';
+   
     document.addEventListener('DOMContentLoaded', function () {     
         
         // user dates -34.905572, -56.185498 GdlWebCamp
@@ -197,3 +237,4 @@
 
     });
 })();
+*/

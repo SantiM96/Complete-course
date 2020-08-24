@@ -381,6 +381,7 @@
     }
     .program-menu {
         border-bottom: 2px solid #fe4118;
+        cursor: pointer;
     }
     .program-menu a {
         display: block;
@@ -395,7 +396,7 @@
         border-radius: 0.5rem 0.5rem 0 0;
     }
     .program-menu a:hover {
-        background-color: #ececec;
+        background-color: #ececec!important;
     }
     @media (min-width: 768px) {
         .program-menu {
@@ -410,6 +411,15 @@
     }
     .program-menu a i {
         font-size: 2.5rem;
+    }
+    #talleres {
+        display: inline;
+    }
+    #conferencias {
+        display: none;
+    }
+    #seminarios {
+        display: none;
     }
     .bord-bot {
         border-bottom: 2px solid #fe4918;
@@ -610,7 +620,7 @@
     /** Map **/
     .map {
         height: 42rem;
-add        border-top: 2px solid #e1e1e1;
+        border-top: 2px solid #e1e1e1;
         border-bottom: 2px solid #e1e1e1;
     }
 
