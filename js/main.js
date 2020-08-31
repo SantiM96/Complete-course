@@ -30,6 +30,13 @@ $(function() {
     }       
 });
 
+//Animate numbers accountant
+$('summary-event li:nth-child(1) p').animateNumber({ number: 6 }, 1200);
+$('summary-event li:nth-child(2) p').animateNumber({ number: 15 }, 1200);
+$('summary-event li:nth-child(3) p').animateNumber({ number: 3 }, 1200);
+$('summary-event li:nth-child(4) p').animateNumber({ number: 9 }, 1200);
+
+
 
 
 
@@ -37,7 +44,6 @@ $(function() {
 
 
 /*
-
 
 (function() {
     'use strict';
