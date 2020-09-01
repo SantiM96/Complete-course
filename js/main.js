@@ -34,6 +34,22 @@ $(function() {
     $('.summary-event li:nth-child(2) p').animateNumber({ number: 15 }, 1600);
     $('.summary-event li:nth-child(3) p').animateNumber({ number: 3 }, 1200);
     $('.summary-event li:nth-child(4) p').animateNumber({ number: 9 }, 1300);
+
+
+    //Countdown
+    $('.countdown').countdown('2020/11/11 12:00:00', function(event) { 
+        $('#days').html(event.strtime('%D'));
+    })
+
+    console.log($('.countdown'));
+
+
+
+
+
+
+
+
 });
 
 
