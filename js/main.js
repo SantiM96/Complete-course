@@ -1,6 +1,18 @@
 $(function() {
     'use strict'
 
+
+    //GdlWebCamp
+    $('.hero-text h1').lettering();
+
+    $(".hero-text h1 span").hover(function(){
+        $(this).animate({ bottom: '7px' }, 150);
+    },
+        function () {
+            $(this).animate({ bottom: "0px" }, 150);
+        });
+
+
     //Programa del Evento
     $('nav a').click(programEvent);
 
@@ -37,11 +49,13 @@ $(function() {
 
 
     //Countdown
-    $('.countdown').countdown('2020/11/11 12:00:00', function(event) { 
-        $('#days').html(event.strtime('%D'));
+    $('.countdown').countdown('2020/9/11 12:00:00', function(event) { 
+        $('#days').html(event.strftime('%D'));
+        $('#hours').html(event.strftime('%H'));
+        $('#minutes').html(event.strftime('%M'));
+        $('#seconds').html(event.strftime('%S'));
     })
 
-    console.log($('.countdown'));
 
 
 
