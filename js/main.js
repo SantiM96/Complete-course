@@ -5,12 +5,34 @@ $(function() {
     //GdlWebCamp
     $('.hero-text h1').lettering();
 
-    $(".hero-text h1 span").hover(function(){
-        $(this).animate({ bottom: '7px' }, 150);
-    },
+    $(".hero-text h1 span").hover(
+        function () {
+            $(this).animate({ bottom: '7px' }, 150);
+        },
         function () {
             $(this).animate({ bottom: "0px" }, 150);
-        });
+        }
+    );
+
+    
+    //Bar in the top part
+    let windowsHeight = $(window).height();
+    $(window).scroll(function() {
+        let scroll = $(window).scrollTop();
+
+        if (scroll > windowsHeight) {
+            $('.bar').addClass('fixed');
+            let barHeight = $('.bar').height();
+            $('body').css({ 'margin-top': barHeight + 'px' });  
+            console.log(barHeight);
+        }
+        else { 
+            $('.bar').removeClass('fixed');
+            $('body').css({ 'margin-top': '0px' });
+        }
+    });
+
+
 
 
     //Programa del Evento
