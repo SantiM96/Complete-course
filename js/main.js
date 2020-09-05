@@ -23,13 +23,18 @@ $(function() {
         if (scroll > windowsHeight) {
             $('.bar').addClass('fixed');
             let barHeight = $('.bar').height();
-            $('body').css({ 'margin-top': barHeight + 'px' });  
-            console.log(barHeight);
+            $('body').css({ 'margin-top': barHeight + 'px' });
         }
         else { 
             $('.bar').removeClass('fixed');
             $('body').css({ 'margin-top': '0px' });
         }
+    });
+
+
+    //Menu responsive
+    $('.mobile-menu').on('click', function() {
+        $('.main-nav').slideToggle();
     });
 
 
