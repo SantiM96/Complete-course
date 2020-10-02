@@ -477,12 +477,14 @@ ul {
     font-size: 2.5rem;
 }
 #talleres {
-    display: inline;
+    opacity: hide;
 }
 #conferencias {
+    opacity: hide;
     display: none;
 }
 #seminarios {
+    opacity: hide;
     display: none;
 }
 .bord-bot {
@@ -687,6 +689,10 @@ ul {
     border-top: 2px solid #e1e1e1;
     border-bottom: 2px solid #e1e1e1;
 }
+.map iframe {
+    width: 100%;
+    height: 100%;
+}
 
 /** Testimonial **/
 
@@ -884,6 +890,74 @@ ul {
     border-radius: .5rem;
 }
 
+/* Calendario */
+.calendar h3 {
+    font-size: 2.5rem;
+    color: white;
+    background-color: #fe4118;
+    padding: 1rem 1rem;
+    margin: 0 .3rem;
+    border-radius: 1rem;
+    text-align: center ;
+    max-width: 106.2rem;
+}
+@media (min-width: 480px) {
+    .calendar h3 {
+        border-radius: 0;
+        border-top-left-radius:  1rem;
+        border-top-right-radius:  1rem;
+    }
+}
+@media (min-width: 1200px) {
+    .calendar h3 {
+        margin: 0 auto;
+    }
+}
+.calendar h3 i {
+    font-size: 3rem;
+}
+.flex-day {
+    margin-bottom: 7rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.day {
+    background-color: white;
+    border: 1px solid #d6d6d6;
+    margin: 1rem .3rem;
+    padding: .5rem;
+    max-width: 28rem;
+    flex: 1 0 100%;
+}
+@media (min-width: 480px) {
+    .day {
+        flex: 1 0 48%;
+        transition: all .3s ease;
+        margin: 0rem .3rem .6rem .3rem;
+        max-width: 35rem;
+    }
+}
+@media (min-width: 768px) {
+    .day {
+        flex: 1 0 30%;
+        transition: all .3s ease;
+    }
+    .day:hover {
+        background-color: #d6d6d6;
+        -webkit-transform: scale(1.03);
+    }
+}
+.day i {
+    color: #fe4118;
+}
+.title {
+    color: #fe4118;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+
 /* Registro */
 .caja {
     background-color: white;
@@ -1037,6 +1111,24 @@ ul {
 .total span {
     font-size: 2.2rem;
 }
+
+/* Invitados */
+#cboxLoadedContent {
+    background-color: #f1f1f1;
+    text-align: center;
+}
+#cboxLoadedContent p {
+    width: 90%;
+    margin: 3rem auto;
+    padding-bottom: 1.2rem;
+    font-size: 1.6rem;
+}
+@media (min-width: 480px) {
+    #cboxLoadedContent p {
+        width: 70%;
+    }
+}
+
 
 
 

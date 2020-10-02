@@ -46,23 +46,23 @@ $(function() {
     $('.program-event nav a:first').css({ 'background-color': 'rgb(240, 240, 240)' });
 
     function programEvent() { 
-        $('#talleres').css({ 'display': 'none' });
-        $('#conferencias').css({ 'display': 'none' });
-        $('#seminarios').css({ 'display': 'none' });
+        $('#talleres').animate({ 'opacity': 'hide' }, 350);
+        $('#conferencias').animate({ 'opacity': 'hide' }, 350);
+        $('#seminarios').animate({ 'opacity': 'hide' }), 350;
 
         $('.program-event nav a').css({ 'background-color': 'white' });
 
 
         if (this == $('.program-event nav a')[0]) {
-            $('#talleres').css({ 'display': 'inline' });
+            $('#talleres').animate({ 'opacity': 'show' }, 1000);
             $(this).css({ 'background-color': 'rgb(240, 240, 240)' });
         }
         if (this == $('.program-event nav a')[1]) {
-            $('#conferencias').css({ 'display': 'inline' });
+            $('#conferencias').animate({ 'opacity': 'show' }, 1000);
             $(this).css({ 'background-color': 'rgb(240, 240, 240)' });
         }
         if (this == $('.program-event nav a')[2]) {
-            $('#seminarios').css({ 'display': 'inline' });
+            $('#seminarios').animate({ 'opacity': 'show' }, 1000);
             $(this).css({ 'background-color': 'rgb(240, 240, 240)' });
         }
 
@@ -83,6 +83,10 @@ $(function() {
         $('#seconds').html(event.strftime('%S'));
     })
 
+
+    //Colorbox
+    $('.guest-info').colorbox({inline:true, width:"50%"});
+
 });
 
 
@@ -90,6 +94,8 @@ $(function() {
     'use strict';
    
     document.addEventListener('DOMContentLoaded', function () {
+   
+
         if (document.getElementById('all-day-pass')) {
                 
             // user dates -34.905572, -56.185498 GdlWebCamp

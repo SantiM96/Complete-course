@@ -1,67 +1,4 @@
-<!doctype html>
-<html class="no-js" lang="">
-
-<head>
-    <meta charset="utf-8">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="manifest" href="site.webmanifest">
-    <link rel="apple-touch-icon" href="icon.png">
-    <!-- Place favicon.ico in the root directory -->
-
-    <script src="https://kit.fontawesome.com/ff57233ed3.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700&family=Oswald:wght@200;300;400;500;600;700&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/main.css">
-
-    <meta name="theme-color" content="#fafafa">
-</head>
-
-<body>
-
-    <header class="site-header">
-        <div class="hero">
-            <div class="header-content">
-                <nav class="social-networks">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                </nav>
-                <div class="hero-text">
-                    <div class="event-info">
-                        <p class="date"><i class="far fa-calendar-alt"></i> 10-12 Dic</p>
-                        <p class="city"><i class="fas fa-map-marker-alt"></i> Montevideo, UYU</p>
-                    </div>
-                    <h1>GdlWebCamp</h1>
-                    <p class="slogan">La mejor conferencia de <span>diseño web</span></p>
-                </div>
-            </div><!-- .header-content -->
-        </div><!-- .hero -->
-    </header>
-
-    <div class="bar clearfix">
-        <div class="container flex-bar">
-            <div class="logo-bar">
-                <img src="img/logo.svg" alt="Logo GdlWebCamp">
-            </div>
-            <div class="mobile-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <nav class="main-nav">
-                <a href="conferencia.html">Conferencia</a>
-                <a href="#">Calendario</a>
-                <a href="#">Invitados</a>
-                <a href="registro.html">Reservaciones</a>
-            </nav>
-        </div><!-- .container .flex-bar -->
-    </div><!-- .bar -->
+<?php include_once 'includes/templates/header.php'; ?>
 
     <section class="container section add-top">
         <h2>La mejor conferencia de diseño web en español</h2>
@@ -89,7 +26,7 @@
                     </nav>
 
 
-                    <div id="talleres" class="info-course hide">
+                    <div id="talleres" class="info-course">
                         <div class="details-event bord-bot">
                             <h3>HTML5, CSS3 y JavaScript</h3>
                             <p><i class="far fa-clock"></i>16:00 hrs</p>
@@ -108,7 +45,7 @@
                     </div>
 
 
-                    <div id="conferencias" class="info-course hide">
+                    <div id="conferencias" class="info-course">
                         <div class="details-event bord-bot">
                             <h3>Como ser Freelancer</h3>
                             <p><i class="far fa-clock"></i>10:00 hrs</p>
@@ -127,7 +64,7 @@
                     </div>
 
 
-                    <div id="seminarios" class="info-course hide">
+                    <div id="seminarios" class="info-course">
                         <div class="details-event bord-bot">
                             <h3>Diseño UI/UX para móviles</h3>
                             <p><i class="far fa-clock"></i>16:00 hrs</p>
@@ -192,7 +129,7 @@
             </li>
         </ul><!-- .guests-list -->
     </section>
-
+    
     <section class="accountant parallax">
         <div class="container">
             <ul class="summary-event">
@@ -249,7 +186,10 @@
         </ul><!-- .price-list .container -->
     </section>
 
-    <div id="map" class="map"></div>
+    <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3272.037334385111!2d-56.187031685041866!3d-34.90551258103525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDU0JzE5LjkiUyA1NsKwMTEnMDUuNCJX!5e0!3m2!1ses!2suy!4v1600965156908!5m2!1ses!2suy" title="Mapa GdlWebCamp" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    </div>
+    
 
     <section class="section container">
         <h2>Testimoniales</h2>
@@ -308,57 +248,5 @@
         </ul>
     </section>
 
-    <footer class="main-footer">
-        <section class="container">
-            <div class="about-footer">
-                <h3>Sobre <span>GdlWebCamp</span></h3>
-                <p>Aliquam ipsum ex, tempus ut quam sollicitudin, viverra feugiat mauris. Pellentesque dictum convallis ipsum, sed blandit
-                tortor sodales id. Morbi gravida quam ut magna euismod, sed bibendum enim porttitor. Duis et nisl quis diam tincidunt
-                iaculis. Cras congue arcu sed erat tempor feugiat.</p>
-            </div>
-            <div class="last-tweets">
-                <h3>Últimos <span>Tweets</span></h3>
-                <p>Pellentesque vel lorem tristique, suscipit urna in, sodales sem. Donec dolor velit, pulvinar vel libero quis, tempus
-                interdum tellus.</p>
-                <p>Pellentesque vel lorem tristique, suscipit urna in, sodales sem. Donec dolor velit, pulvinar vel libero quis, tempus
-                interdum tellus.</p>
-                <p>Pellentesque vel lorem tristique, suscipit urna in, sodales sem. Donec dolor velit, pulvinar vel libero quis, tempus
-                interdum tellus.</p>
-            </div>
-            <div>
-                <h3>Redes <span>Sociales</span></h3>
-                <nav class="social-networks sn-footer">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                </nav>
-            </div>
-        </section>
-        <p class="copyright">Todos los derechos Reservados GDLWEBCAMP 2020.</p>
-    </footer>
+<?php include_once 'includes/templates/footer.php'; ?>
 
-
-
-    <!-- End-HTML-Code -->
-    <script src="js/vendor/modernizr-3.8.0.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.4.1.min.js"><\/script>')</script>
-    <script src="js/plugins.js"></script>
-    <script src="js/jquery.animateNumber.min.js"></script>
-    <script src="js/jquery.countdown.min.js"></script>
-    <script src="js/jquery.lettering.js"></script>
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/map.js"></script>
-
-    <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-    <script>
-        window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
-        ga('create', 'UA-XXXXX-Y', 'auto'); ga('set','transport','beacon'); ga('send', 'pageview')
-    </script>
-    <script src="https://www.google-analytics.com/analytics.js" async></script>
-</body>
-
-</html>
