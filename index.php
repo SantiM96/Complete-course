@@ -25,110 +25,110 @@
                         <a><i class="fas fa-university"></i>Seminarios</a>
                     </nav>
 
+                    <?php 
+                    // link to database --talleres--
+                    try {
+                        require_once('includes/functions/conection.php');
+                        $sql = " SELECT `id_event`, `event_name`, `event_time`, `event_date`, `guest_name`, `guest_surname` FROM events ";
+                        $sql .= " INNER JOIN guests ON events.id_guest = guests.id_guests ";
+                        $sql .= " AND id_cat_event = 3 LIMIT 2 ";
+                        $result = $conn->query($sql);
+                    }
+                    catch (\Exeption $e) {
+                        echo $e->getMessage();
+                    } ?>
 
                     <div id="talleres" class="info-course">
-                        <div class="details-event bord-bot">
-                            <h3>HTML5, CSS3 y JavaScript</h3>
-                            <p><i class="far fa-clock"></i>16:00 hrs</p>
-                            <p><i class="far fa-calendar-alt"></i>10 de Dic</p>
-                            <p><i class="fas fa-user"></i>Juan Pablo de la Torre Valdez</p>
-                        </div>
-                        <div class="details-event">
-                            <h3>Responsive Web Design</h3>
-                            <p><i class="far fa-clock"></i>20:00 hrs</p>
-                            <p><i class="far fa-calendar-alt"></i>10 de Dic</p>
-                            <p><i class="fas fa-user"></i>Juan Pablo de la Torre Valdez</p>
-                        </div>
-                        <div class="button-event">
-                            <a href="" class="button">Ver Todos</a>
-                        </div>
+                        <?php $i = 0;
+                        while($events = $result->fetch_assoc() ) { ?>
+    
+                                <div class="details-event <?php if($i == 0) echo("bord-bot"); ?>">
+                                    <h3><?php echo($events['event_name']); ?></h3>
+                                    <p><i class="far fa-clock"></i><?php echo($events['event_time']); ?> hrs</p>
+                                    <p><i class="far fa-calendar-alt"></i><?php echo($events['event_date']); ?></p>
+                                    <p><i class="fas fa-user"></i><?php echo($events['guest_name'] . " " . $events['guest_surname']); ?></p>
+                                </div>
+                            
+                            <?php $i++; ?>
+                        <?php } ?>
                     </div>
+                    
+                    <?php 
+                    // link to database --conferencias--
+                    try {
+                        require_once('includes/functions/conection.php');
+                        $sql = " SELECT `id_event`, `event_name`, `event_time`, `event_date`, `guest_name`, `guest_surname` FROM events ";
+                        $sql .= " INNER JOIN guests ON events.id_guest = guests.id_guests ";
+                        $sql .= " AND id_cat_event = 2 LIMIT 2 ";
+                        $result = $conn->query($sql);
+                    }
+                    catch (\Exeption $e) {
+                        echo $e->getMessage();
+                    } ?>
 
+                    
 
                     <div id="conferencias" class="info-course">
-                        <div class="details-event bord-bot">
-                            <h3>Como ser Freelancer</h3>
-                            <p><i class="far fa-clock"></i>10:00 hrs</p>
-                            <p><i class="far fa-calendar-alt"></i>10 de Dic</p>
-                            <p><i class="fas fa-user"></i>Gregorio Sanchez</p>
-                        </div>
-                        <div class="details-event">
-                            <h3>Tecnologías del Futuro</h3>
-                            <p><i class="far fa-clock"></i>17:00 hrs</p>
-                            <p><i class="far fa-calendar-alt"></i>10 de Dic</p>
-                            <p><i class="fas fa-user"></i>Susan Sanchez</p>
-                        </div>
-                        <div class="button-event">
-                            <a href="" class="button">Ver Todos</a>
-                        </div>
+                        <?php $i = 0;
+                        while($events = $result->fetch_assoc() ) { ?>
+
+                                <div class="details-event <?php if($i == 0) echo("bord-bot"); ?>">
+                                    <h3><?php echo($events['event_name']); ?></h3>
+                                    <p><i class="far fa-clock"></i><?php echo($events['event_time']); ?> hrs</p>
+                                    <p><i class="far fa-calendar-alt"></i><?php echo($events['event_date']); ?></p>
+                                    <p><i class="fas fa-user"></i><?php echo($events['guest_name'] . " " . $events['guest_surname']); ?></p>
+                                </div>
+                        
+                            <?php $i++; ?>
+                        <?php } ?>
                     </div>
+
+                    
+                    
+                    <?php 
+                    // link to database --seminarios--
+                    try {
+                        require_once('includes/functions/conection.php');
+                        $sql = " SELECT `id_event`, `event_name`, `event_time`, `event_date`, `guest_name`, `guest_surname` FROM events ";
+                        $sql .= " INNER JOIN category_event ON events.id_cat_event = category_event.id_category ";
+                        $sql .= " INNER JOIN guests ON events.id_guest = guests.id_guests ";
+                        $sql .= " AND id_cat_event = 1 LIMIT 2 ";
+                        $result = $conn->query($sql);
+                    }
+                    catch (\Exeption $e) {
+                        echo $e->getMessage();
+                    } ?>
 
 
                     <div id="seminarios" class="info-course">
-                        <div class="details-event bord-bot">
-                            <h3>Diseño UI/UX para móviles</h3>
-                            <p><i class="far fa-clock"></i>16:00 hrs</p>
-                            <p><i class="far fa-calendar-alt"></i>10 de Dic</p>
-                            <p><i class="fas fa-user"></i>Juan Pablo de la Torre Valdez</p>
-                        </div>
-                        <div class="details-event">
-                            <h3>Aprende a Programar en una mañana</h3>
-                            <p><i class="far fa-clock"></i>10:00 hrs</p>
-                            <p><i class="far fa-calendar-alt"></i>11 de Dic</p>
-                            <p><i class="fas fa-user"></i>Susana Rivera</p>
-                        </div>
-                        <div class="button-event">
-                            <a href="" class="button">Ver Todos</a>
-                        </div>
+                        <?php $i = 0;
+                        while($events = $result->fetch_assoc() ) { ?>
+
+                            
+                                <div class="details-event <?php if($i == 0) echo("bord-bot"); ?>">
+                                    <h3><?php echo($events['event_name']); ?></h3>
+                                    <p><i class="far fa-clock"></i><?php echo($events['event_time']); ?> hrs</p>
+                                    <p><i class="far fa-calendar-alt"></i><?php echo($events['event_date']); ?></p>
+                                    <p><i class="fas fa-user"></i><?php echo($events['guest_name'] . " " . $events['guest_surname']); ?></p>
+                                </div>
+                            
+
+                            <?php $i++; ?>
+                        <?php } ?>
                     </div>
 
+                    <div class="button-event">
+                        <a href="" class="button">Ver Todos</a>
+                    </div>
+
+                    
 
                 </div><!-- .program-event -->
             </div><!-- .container -->
         </div><!-- .program-content -->
     </section><!-- .program -->
 
-    <section class="guests section container">
-        <h2>Lista de Invitados</h2>
-        <ul class="guests-list">
-            <li>
-                <div class="guest">
-                    <img src="img/invitado1.jpg" alt="Imagen Invitado">
-                    <p>Rafael Bautista</p>
-                </div>
-            </li>
-            <li>
-                <div class="guest">
-                    <img src="img/invitado2.jpg" alt="Imagen Invitado">
-                    <p>Shari Herrera</p>
-                </div>
-            </li>
-            <li>
-                <div class="guest">
-                    <img src="img/invitado3.jpg" alt="Imagen Invitado">
-                    <p>Gregorio Sanchez</p>
-                </div>
-            </li>
-            <li>
-                <div class="guest">
-                    <img src="img/invitado4.jpg" alt="Imagen Invitado">
-                    <p>Susana Rivera</p>
-                </div>
-            </li>
-            <li>
-                <div class="guest">
-                    <img src="img/invitado5.jpg" alt="Imagen Invitado">
-                    <p>Harold Garcia</p>
-                </div>
-            </li>
-            <li>
-                <div class="guest">
-                    <img src="img/invitado6.jpg" alt="Imagen Invitado">
-                    <p>Susana Sanchez</p>
-                </div>
-            </li>
-        </ul><!-- .guests-list -->
-    </section>
+    <?php include_once 'includes/templates/guests.php'; ?>
     
     <section class="accountant parallax">
         <div class="container">
@@ -249,4 +249,5 @@
     </section>
 
 <?php include_once 'includes/templates/footer.php'; ?>
+<?php $conn->close(); ?>
 

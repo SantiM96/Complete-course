@@ -1,10 +1,9 @@
-
 <?php include_once 'includes/templates/header.php'; ?>
 
 
     <section class="section container">
         <h2>Registro de Usuario</h2>
-        <form id="register" class="register" action="" method="post">
+        <form id="register" class="register" action="validate_register.php" method="post">
             <div id="user-date" class="user-date caja clearfix">
 
                 <div class="camp">

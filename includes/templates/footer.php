@@ -41,7 +41,7 @@
     <script src="js/jquery.lettering.js"></script>
     <?php 
         $page = basename($_SERVER{'PHP_SELF'});
-        if ($page == 'invitados.php') {
+        if ($page == 'invitados.php' || $page == 'index.php') {
             echo '<script src="js/jquery.colorbox-min.js"></script>';
         }
         else if ($page == 'conferencia.php') {

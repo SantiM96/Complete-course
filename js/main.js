@@ -38,7 +38,11 @@ $(function() {
     });
 
 
-
+    //Menu marker
+    $('body.conferencia .main-nav a:contains(Conferencia)').addClass('marker');
+    $('body.calendario .main-nav a:contains(Calendario)').addClass('marker');
+    $('body.invitados .main-nav a:contains(Invitados)').addClass('marker');
+    $('body.registro .main-nav a:contains(Reservaciones)').addClass('marker-white');
 
     //Programa del Evento
     $('nav a').click(programEvent);
@@ -46,23 +50,24 @@ $(function() {
     $('.program-event nav a:first').css({ 'background-color': 'rgb(240, 240, 240)' });
 
     function programEvent() { 
-        $('#talleres').animate({ 'opacity': 'hide' }, 350);
-        $('#conferencias').animate({ 'opacity': 'hide' }, 350);
-        $('#seminarios').animate({ 'opacity': 'hide' }), 350;
+        $('#talleres').css({ 'display': 'none' });
+        $('#conferencias').css({ 'display': 'none' });
+        $('#seminarios').css({ 'display': 'none' });
 
         $('.program-event nav a').css({ 'background-color': 'white' });
 
-
         if (this == $('.program-event nav a')[0]) {
-            $('#talleres').animate({ 'opacity': 'show' }, 1000);
+            $('#talleres').animate({ 'opacity': 'show' }, 500);
             $(this).css({ 'background-color': 'rgb(240, 240, 240)' });
         }
+    
         if (this == $('.program-event nav a')[1]) {
-            $('#conferencias').animate({ 'opacity': 'show' }, 1000);
+            $('#conferencias').animate({ 'opacity': 'show' }, 500);
             $(this).css({ 'background-color': 'rgb(240, 240, 240)' });
         }
+
         if (this == $('.program-event nav a')[2]) {
-            $('#seminarios').animate({ 'opacity': 'show' }, 1000);
+            $('#seminarios').animate({ 'opacity': 'show' }, 500);
             $(this).css({ 'background-color': 'rgb(240, 240, 240)' });
         }
 

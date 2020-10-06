@@ -286,6 +286,12 @@ ul {
 .bar {
     background-color: #353535;
 }
+.marker {
+    border-bottom: 2px solid #e33000;
+}
+nav.main-nav .marker-white {
+    text-decoration: underline  white!important;
+}
 .flex-bar {
     text-align: center;
 }
@@ -516,6 +522,19 @@ ul {
 }
 
 /** Guests **/
+.section-guests {
+    margin-top: 12rem;
+}
+@media (min-width: 480px) {
+    .section-guests {
+        margin-top: 7rem;
+    }
+}
+@media (min-width: 768px) {
+    .section-guests {
+        margin-top: 0;
+    }
+}
 .guests-list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

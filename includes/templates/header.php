@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
     <?php 
         $page = basename($_SERVER{'PHP_SELF'});
-        if ($page == 'invitados.php') {
+        if ($page == 'invitados.php' || $page == 'index.php') {
             echo '<link rel="stylesheet" href="css/colorbox.css">';
         }
         else if ($page == 'conferencia.php') {
@@ -31,7 +31,7 @@
     <meta name="theme-color" content="#fafafa">
 </head>
 
-<body>
+<body class="<?php echo (str_replace('.php', '', $page)); ?>">
 
     <header class="site-header">
         <div class="hero">
