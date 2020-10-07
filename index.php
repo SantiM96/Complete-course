@@ -104,21 +104,19 @@
                         <?php $i = 0;
                         while($events = $result->fetch_assoc() ) { ?>
 
-                            
                                 <div class="details-event <?php if($i == 0) echo("bord-bot"); ?>">
                                     <h3><?php echo($events['event_name']); ?></h3>
                                     <p><i class="far fa-clock"></i><?php echo($events['event_time']); ?> hrs</p>
                                     <p><i class="far fa-calendar-alt"></i><?php echo($events['event_date']); ?></p>
                                     <p><i class="fas fa-user"></i><?php echo($events['guest_name'] . " " . $events['guest_surname']); ?></p>
                                 </div>
-                            
 
                             <?php $i++; ?>
                         <?php } ?>
                     </div>
 
                     <div class="button-event">
-                        <a href="" class="button">Ver Todos</a>
+                        <a href="calendario.php" class="button">Ver Todos</a>
                     </div>
 
                     

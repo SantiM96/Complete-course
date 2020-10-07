@@ -118,8 +118,8 @@ $(function() {
                 allDayPass = document.getElementById('all-day-pass'),
                 twoDayPass = document.getElementById('two-days-pass');
                 
-            let shirt = document.getElementById('camisa-evento'),
-                labels = document.getElementById('etiquetas');
+            let shirt = document.getElementById('shirts-event'),
+                labels = document.getElementById('labels.event');
                 
             let numberDayPass = dayPass.value,
                 numberAllDayPass = allDayPass.value,
@@ -132,14 +132,22 @@ $(function() {
                 showDays = [];
 
             // buttons and divs
-            let calculate = document.getElementById('calcular'),
-                gift = document.getElementById('regalo'),
+            let calculate = document.getElementById('calculate'),
+                gift = document.getElementById('gift'),
                 errorP = document.getElementById('error'),
                 errorPMail = document.getElementById('errorMail'),
-                buttonRegister = document.getElementById('btnregistro'),
-                total = document.getElementById('suma-total'),
+                buttonRegister = document.getElementById('btnregister'),
+                totalSend = document.getElementById('total_amount'),
+                total = document.getElementById('total-sum'),
                 result = document.getElementById('lista-productos');
                 
+
+            buttonRegister.disabled = false;
+            
+            
+
+            
+            
                 
             calculate.addEventListener('click', calculateAmount);
 
@@ -166,8 +174,8 @@ $(function() {
                     allDayPass = document.getElementById('all-day-pass');
                     twoDayPass = document.getElementById('two-days-pass');
 
-                    shirt = document.getElementById('camisa-evento');
-                    labels = document.getElementById('etiquetas');
+                    shirt = document.getElementById('shirts-event');
+                    labels = document.getElementById('labels.event');
 
                     numberDayPass = dayPass.value;
                     numberAllDayPass = allDayPass.value;
@@ -230,6 +238,8 @@ $(function() {
                     }
 
                     total.innerHTML = totalAmountTickets;
+
+                    totalSend.value = total.innerText;
                 }
             }
 
