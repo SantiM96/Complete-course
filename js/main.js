@@ -142,7 +142,6 @@ $(function() {
                 result = document.getElementById('lista-productos');
                 
 
-            buttonRegister.disabled = false;
             
             
 

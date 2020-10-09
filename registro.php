@@ -171,11 +171,11 @@
                         </div><!-- .orden -->
                         <div class="orden">
                             <label for="gift"></label>
-                            <select id="gift" required>
+                            <select id="gift" name="gift" required>
                                 <option class="low-font" value="">-- Seleccione un Regalo --</option>
-                                <option value="2">Etiqueta</option>
-                                <option value="1">Pulsera</option>
-                                <option value="3">Pluma</option>
+                                <option value="etiqueta">Etiqueta</option>
+                                <option value="pulsera">Pulsera</option>
+                                <option value="pluma">Pluma</option>
                             </select>
                         </div><!-- .orden -->
 

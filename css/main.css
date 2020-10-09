@@ -1148,6 +1148,23 @@ nav.main-nav .marker-white {
     }
 }
 
+/* Validation */
+.consult-dates ul li {
+    color: #e33000;
+    font-weight: bold;
+    font-size: 1.75rem;
+}
+.consult-dates ul li:last-child {
+    margin-top: 5rem;
+}
+.consult-dates ul span {
+    margin-left: .5rem;
+    color: #000;
+    font-weight: 600;
+}
+.total-validate {
+    font-size: 3rem;
+}
 
 
 
