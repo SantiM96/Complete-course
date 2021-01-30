@@ -18,12 +18,8 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
     <?php 
         $page = basename($_SERVER{'PHP_SELF'});
-        if ($page == 'invitados.php' || $page == 'index.php') {
-            echo '<link rel="stylesheet" href="css/colorbox.css">';
-        }
-        else if ($page == 'conferencia.php') {
-            echo '<link rel="stylesheet" href="css/lightbox.css">';
-        }
+        if ($page == 'invitados.php' || $page == 'index.php') echo '<link rel="stylesheet" href="css/colorbox.css">';
+        else if ($page == 'conferencia.php') echo '<link rel="stylesheet" href="css/lightbox.css">';
     ?>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css">
