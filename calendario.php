@@ -14,7 +14,7 @@
                 $sql .= " ORDER BY id_event ";
                 $result = $conn->query($sql);
             }
-            catch (\Exeption $e) {
+            catch (\Exception $e) {
                 echo $e->getMessage();
             }
         ?>
@@ -31,12 +31,12 @@
                     $date = $events['event_date'];
 
                     $event = array(
-                        'title' => $events[event_name],
-                        'date' => $events[event_date],
-                        'time' => $events[event_time],
-                        'category' => $events[category],
-                        'icon' => $events[icon],
-                        'guest' => $events[guest_name] . " " . $events[guest_surname]
+                        'title' => $events['event_name'],
+                        'date' => $events['event_date'],
+                        'time' => $events['event_time'],
+                        'category' => $events['category'],
+                        'icon' => $events['icon'],
+                        'guest' => $events['guest_name'] . " " . $events['guest_surname']
                     );
 
 

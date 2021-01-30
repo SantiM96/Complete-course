@@ -1,0 +1,108 @@
+
+/* Global */
+.content-wrapper {
+    padding-bottom: 3rem;
+}
+.margin-left {
+    margin-left: 1rem;
+}
+.align-right {
+    text-align: right;
+}
+.align-center {
+    text-align: center;
+}
+.section-small  {
+    width: 100%;
+    max-width: 27rem;
+    margin: 0 auto;
+}
+.section-big {
+    width: 100%;
+    max-width: 48rem;
+    margin: 0 auto;
+}
+.action {
+    min-width: 6rem;
+    text-align: center;
+}
+
+
+/* Navegation */
+.info {
+    margin: 0 auto;
+}
+
+
+/** Admins **/
+
+
+/* Admin Add */
+
+.body-create-admin h3 {
+    text-align: center;
+    font-size: 1.4rem;
+    margin: .5rem auto;
+}
+.body-create-admin div {
+    margin: 1.5rem 0;
+}
+.body-create-admin p {
+    margin-left: .5rem;
+    font-weight: 900;
+}
+@media (min-width: 480px) {
+    .body-create-admin p {
+        margin-left: 1.5rem;
+    }
+}
+.body-create-admin p span {
+    font-weight: 400;
+}
+.permission {
+    font-weight: 400!important;
+    color: black;
+}
+
+/* Admin Edit */
+.btn-action {
+    font-size: .5rem;
+    width: 2.5rem;
+    text-align: center;
+}
+.btn-action i {
+    font-size: .9rem;
+    color: rgb(255, 255, 255);
+}
+
+
+/** Guests **/
+
+.fullname {
+    min-width: 10rem;
+}
+.small {
+    color: rgb(116, 116, 116);
+    margin-left: .75rem;
+}
+.currently-image-button button {
+    background-color: #007bff;
+    color: white;
+    border-radius: .3rem;
+    border: none;
+    padding: .5rem 1rem;
+    font-size: 1.1rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.currently-image {
+    display: none;
+}
+.currently-image img {
+    border: solid 1px rgb(158, 158, 158);
+    border-radius: .25rem;
+    max-width: 30rem;
+}
+tbody tr td img {
+    width: 5rem;
+}
+

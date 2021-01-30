@@ -8,7 +8,7 @@
                 $sql = " SELECT * FROM guests ";
                 $result = $conn->query($sql);
             }
-            catch (\Exeption $e) {
+            catch (Exception $e) {
                 echo $e->getMessage();
             }
         ?>
@@ -20,7 +20,7 @@
                     <li>
                         <div class="guest">
                             <a class="guest-info" href="#guest<?php echo $guests['id_guests']; ?>">
-                                <img src="img/<?php echo $guests['url_image']; ?>" alt="<?php echo $guests['url_image']; ?>">
+                                <img src="img/guests/<?php echo $guests['url_image']; ?>" alt="<?php echo $guests['url_image']; ?>">
                                 <p><?php echo $guests['guest_name'] . " " . $guests['guest_surname']; ?></p>
                             </a>
                         </div>
@@ -28,7 +28,7 @@
                     <div style="display:none;">
                         <div class="guest-info" id="guest<?php echo $guests['id_guests']; ?>">
                             <h2><?php echo $guests['guest_name'] . " " . $guests['guest_surname']; ?></h2>
-                            <img src="img/<?php echo $guests['url_image']; ?>" alt="<?php echo $guests['url_image']; ?>">
+                            <img src="img/guests/<?php echo $guests['url_image']; ?>" alt="<?php echo $guests['url_image']; ?>">
                             <p><?php echo $guests['description']; ?></p>
                         </div>
                     </div>

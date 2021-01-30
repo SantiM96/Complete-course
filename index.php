@@ -9,7 +9,7 @@
 
     <section class="program">
         <div class="video-container">
-            <video autoplay loop poster="bg-talleres.jpg">
+            <video autoplay loop poster="img/bg-talleres.jpg">
                 <source src="video/video.mp4" type="video/mp4">
                 <source src="video/video.ogv" type="video/ogv">
                 <source src="video/video.webm" type="video/webm">
@@ -19,29 +19,36 @@
             <div class="container">
                 <div class="program-event">
                     <h2>Programa del Evento</h2>
-                    <nav class="program-menu">
-                        <a><i class="fas fa-code"></i>Talleres</a>
-                        <a><i class="fas fa-comment"></i>Conferencias</a>
-                        <a><i class="fas fa-university"></i>Seminarios</a>
+                    <?php 
+                        require_once('includes/functions/conection.php');
+                        try {
+                            $categories = $conn->query("SELECT * FROM category_event LIMIT 3");
+                        }
+                        catch (Exception $e) {
+                            echo $e->getMessage();
+                        } 
+                    ?>
+                    <nav class="program-menu"> 
+                        <?php while ($category = $categories->fetch_assoc()) { ?>
+                            <a><i class="<?php echo $category['icon']; ?>"></i><?php echo $category['category']; ?></a>
+                        <?php } ?>
                     </nav>
 
                     <?php 
-                    // link to database --talleres--
                     try {
-                        require_once('includes/functions/conection.php');
                         $sql = " SELECT `id_event`, `event_name`, `event_time`, `event_date`, `guest_name`, `guest_surname` FROM events ";
                         $sql .= " INNER JOIN guests ON events.id_guest = guests.id_guests ";
-                        $sql .= " AND id_cat_event = 3 LIMIT 2 ";
+                        $sql .= " AND id_cat_event = 1 LIMIT 2 ";
                         $result = $conn->query($sql);
                     }
-                    catch (\Exeption $e) {
+                    catch (Exception $e) {
                         echo $e->getMessage();
                     } ?>
 
                     <div id="talleres" class="info-course">
                         <?php $i = 0;
                         while($events = $result->fetch_assoc() ) { ?>
-    
+
                                 <div class="details-event <?php if($i == 0) echo("bord-bot"); ?>">
                                     <h3><?php echo($events['event_name']); ?></h3>
                                     <p><i class="far fa-clock"></i><?php echo($events['event_time']); ?> hrs</p>
@@ -54,22 +61,19 @@
                     </div>
                     
                     <?php 
-                    // link to database --conferencias--
                     try {
-                        require_once('includes/functions/conection.php');
                         $sql = " SELECT `id_event`, `event_name`, `event_time`, `event_date`, `guest_name`, `guest_surname` FROM events ";
                         $sql .= " INNER JOIN guests ON events.id_guest = guests.id_guests ";
                         $sql .= " AND id_cat_event = 2 LIMIT 2 ";
                         $result = $conn->query($sql);
                     }
-                    catch (\Exeption $e) {
+                    catch (Exception $e) {
                         echo $e->getMessage();
                     } ?>
 
                     
-
                     <div id="conferencias" class="info-course">
-                        <?php $i = 0;
+                        <?php
                         while($events = $result->fetch_assoc() ) { ?>
 
                                 <div class="details-event <?php if($i == 0) echo("bord-bot"); ?>">
@@ -84,18 +88,15 @@
                     </div>
 
                     
-                    
                     <?php 
-                    // link to database --seminarios--
                     try {
-                        require_once('includes/functions/conection.php');
                         $sql = " SELECT `id_event`, `event_name`, `event_time`, `event_date`, `guest_name`, `guest_surname` FROM events ";
                         $sql .= " INNER JOIN category_event ON events.id_cat_event = category_event.id_category ";
                         $sql .= " INNER JOIN guests ON events.id_guest = guests.id_guests ";
-                        $sql .= " AND id_cat_event = 1 LIMIT 2 ";
+                        $sql .= " AND id_cat_event = 3 LIMIT 2 ";
                         $result = $conn->query($sql);
                     }
-                    catch (\Exeption $e) {
+                    catch (Exception $e) {
                         echo $e->getMessage();
                     } ?>
 
@@ -247,5 +248,3 @@
     </section>
 
 <?php include_once 'includes/templates/footer.php'; ?>
-<?php $conn->close(); ?>
-

@@ -536,21 +536,26 @@ nav.main-nav .marker-white {
     }
 }
 .guests-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 3rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    
 }
-@media (min-width: 768px) {
-    .guests-list {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-.guest {
+.guests-list li {
+    flex: 0 0 calc(50% - 1rem);
+    margin-bottom: 2rem;
     position: relative;
     overflow: hidden;
 }
+@media (min-width: 768px) {
+    .guests-list li {
+        flex: 0 0 calc(33% - 1rem);
+    }
+}
 .guest img {
-    max-width: 100%;
+    width: 100%;
+    overflow: hidden;
+    object-fit: cover;
 }
 @media (min-width: 768px) {
     .guest img {
@@ -1155,7 +1160,35 @@ section p.total-validate {
     color: #e33000;
 }
 
-
+/* Payment_completed */
+.result {
+    color: white;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    border-radius: .5rem;
+    width: 93%;
+    max-width: 40rem;
+}
+@media (min-width: 500px) {
+    .result {
+        width: 80%;
+    }
+}
+@media (min-width: 800px) {
+    .result {
+        width: 50%;
+    }
+}
+.result p {
+    margin: 0;
+    line-height: 2;
+}
+.success {
+    background-color: rgba(0, 128, 0, 0.85);
+}
+.error {
+    background-color: rgba(255, 0, 0, 0.85);
+}
 
 
 

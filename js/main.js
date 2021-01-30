@@ -90,7 +90,7 @@ $(function() {
 
 
     //Colorbox
-    $('.guest-info').colorbox({inline:true, width:"50%"});
+    if(document.querySelector('.guest-info')) $('.guest-info').colorbox({inline:true, width:"50%"});
 
 });
 
@@ -101,6 +101,68 @@ $(function() {
     document.addEventListener('DOMContentLoaded', function () {
    
 
+        if (document.querySelector(".guest")) {
+            let firstImage = document.querySelector(".guest"),
+                firstImageHeightPx = window.getComputedStyle(firstImage, 'height').height,
+                firstImageHeightFloat = parseFloat(firstImageHeightPx.split(" px")),
+                allImageDiv = document.querySelectorAll(".guest"),
+                heightPx = "",
+                heightFloat = 0.0,
+                liHeight =  "",
+                imgHeight = "",
+                guestNameLen = document.querySelectorAll(".guest a p")
+            
+
+            function adjustImage() {
+                //take the values ​​again after adjustment
+                firstImage = document.querySelector(".guest")
+                firstImageHeightPx = window.getComputedStyle(firstImage, 'height').height
+                firstImageHeightFloat = parseFloat(firstImageHeightPx.split(" px"))
+                allImageDiv = document.querySelectorAll(".guest")
+
+
+                for (let i = 0; i < allImageDiv.length; i++) { 
+                    heightPx = window.getComputedStyle(allImageDiv[i], 'height').height
+                    heightFloat = parseFloat(heightPx.split(" px"))
+    
+                    //shrink large images
+                    if (firstImageHeightFloat < heightFloat) {
+                        allImageDiv[i].style.height = firstImageHeightPx
+                    }
+    
+                    //enlarge small images
+                    if (firstImageHeightFloat > heightFloat) {
+                        allImageDiv[i].style.height = firstImageHeightPx
+                    }
+    
+                    liHeight = parseFloat(window.getComputedStyle(allImageDiv[i].parentNode, 'height').height.split(" px"))
+                    imgHeight = parseFloat(window.getComputedStyle(allImageDiv[i].childNodes[1].childNodes[1], 'height').height.split(" px"))
+    
+                    if (liHeight > imgHeight) { 
+                        allImageDiv[i].childNodes[1].childNodes[1].style.height = parseFloat(window.getComputedStyle(allImageDiv[i], 'height').height.split(" px")) + "px"
+                    }
+
+                    //do not shrink the text shadow if there are more than 16 characters
+                    if (guestNameLen[i].textContent.length > 16) { 
+                        guestNameLen[i].parentNode.parentNode.addEventListener('mouseover', function () { 
+                            guestNameLen[i].style.width = "100%"
+                        })      
+                    }
+
+
+
+                }
+            }
+            adjustImage()
+            window.onresize = adjustImage()   
+
+            
+        }
+        
+        
+        
+
+        
         if (document.getElementById('all-day-pass')) {
                 
             // user dates -34.905572, -56.185498 GdlWebCamp
@@ -302,6 +364,7 @@ $(function() {
                     this.style.border = '1.75px solid #929292';
                 }
             }
+            
         }
     });
 })();
