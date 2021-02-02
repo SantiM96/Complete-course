@@ -154,14 +154,9 @@ $(function() {
                 }
             }
             adjustImage()
-            window.onresize = adjustImage()   
-
-            
+            window.onresize = adjustImage() 
         }
         
-        
-        
-
         
         if (document.getElementById('all-day-pass')) {
                 
@@ -203,14 +198,10 @@ $(function() {
                 total = document.getElementById('total-sum'),
                 result = document.getElementById('lista-productos');
                 
-
+  
+            disabledButton(buttonRegister);
+            calculate.addEventListener('click', calculateAmount); 
             
-            
-
-            
-            
-                
-            calculate.addEventListener('click', calculateAmount);
 
             dayPass.addEventListener('blur', showCheckbox);
             allDayPass.addEventListener('blur', showCheckbox);
@@ -227,7 +218,12 @@ $(function() {
             function calculateAmount(event) {
                 event.preventDefault();
                 if (gift.value === '') {
-                    alert('Debes elegir un regalo');
+                    disabledButton(buttonRegister);
+                    swal({
+                        type: 'warning',
+                        title: '¡Espera!',
+                        text: 'Debes elegir un regalo'
+                    }).catch(() => swal.close())
                     gift.focus();
                 }
                 else {
@@ -301,6 +297,20 @@ $(function() {
                     total.innerHTML = totalAmountTickets;
 
                     totalSend.value = total.innerText;
+
+                    if (totalAmountTickets > 0 && gift.value != "") {
+                        if (nameUser.value != "" && surnameUser.value != "" && emailUser.value != "") {
+                            enableButton(buttonRegister);
+                        }
+                        else { 
+                            console.log("faltan los datos de registro")
+                        }
+                    }
+                    else { 
+                        disabledButton(buttonRegister);
+                    }
+
+
                 }
             }
 
@@ -337,7 +347,8 @@ $(function() {
                 if (this.value == '') {
                     errorP.style.display = 'block';
                     errorP.innerHTML = 'Este Campo es Obligatorio';
-                    this.style.border = '2px solid red'
+                    errorPMail.style.display = 'none';
+                    this.style.border = '2px solid red';
                     if (this == nameUser) camp1Complete = false;
                     if (this == surnameUser) camp2Complete = false;
                     if (this == emailUser) camp3Complete = false;
@@ -350,20 +361,37 @@ $(function() {
                     if (this == emailUser) camp3Complete = true;
                         
                     if (camp1Complete && camp2Complete && camp3Complete) errorP.style.display = 'none';
+                    checkMail();
                 };
-            };
+            }
 
             function checkMail() {
-                if (this.value.indexOf('@') < 0 && camp3Complete) {
-                    errorPMail.style.display = 'block';
-                    errorPMail.innerHTML = 'Ingrese un email Válido';
-                    this.style.border = '2px solid red'
-                }
-                else {
-                    errorPMail.style.display = 'none';
-                    this.style.border = '1.75px solid #929292';
+                if (camp3Complete) {
+                    if (emailUser.value.indexOf('@') < 0) {
+                        errorPMail.style.display = 'block';
+                        errorPMail.innerHTML = 'Ingrese un email Válido';
+                        emailUser.style.border = '2px solid red'
+                    }
+                    else {
+                        errorPMail.style.display = 'none';
+                        emailUser.style.border = '1.75px solid #929292';
+                    }
                 }
             }
+
+            function disabledButton(button) { 
+                button.style.backgroundColor = "gray"
+                button.style.opacity = ".65"
+                button.style.border = "none"
+                button.disabled = true
+            }
+
+            function enableButton(button) { 
+                button.style.backgroundColor = "#fe4118"
+                button.style.opacity = "1"
+                button.style.border = "unset"
+                button.disabled = false
+            } 
             
         }
     });

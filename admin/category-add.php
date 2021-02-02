@@ -12,7 +12,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Agregar Categoría</h1>
+                    <h1>Agregar Categoría <i class="fab fa-500px"></i></h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -34,6 +34,7 @@
                     <h3 class="card-title">Crear Nueva Categoría</h3>
                 </div>
                 <!-- /.card-header -->
+                
                 <!-- form start -->
                 <form name="category-create" id="category-create" method="post" action="category-backend.php">
                     <div class="card-body">

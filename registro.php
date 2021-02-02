@@ -82,7 +82,37 @@
                 </ul><!-- .price-list .container -->
             </div><!-- #packs .packs -->
 
-            <!-- Imported from "https://gist.github.com/juanpablogdl/d3c12e82fb6b78b8a7222c2b716fb3ab#" -->
+            <?php 
+                require_once('includes/functions/conection.php');
+
+                try {
+                    $sql = "SELECT events.*, category_event.category, guests.guest_name, guests.guest_surname FROM events";
+                    $sql .= " JOIN category_event ON events.id_cat_event = category_event.id_category ";
+                    $sql .= " JOIN guests ON events.id_guest = guests.id_guests ";
+                    $sql .= " ORDER BY events.event_date, category_event.category, events.event_time ";
+                    $result = $conn->query($sql);
+                }
+                catch(Exception $e) {
+                    echo $e->getMessage();
+                }
+
+                echo "<pre>";
+                    var_dump($result->fetch_assoc());
+                echo "</pre>";
+
+                while ($events = $result->fetch_assoc()) {
+                    setlocale(LC_TIME, 'spanish');
+                    $date = $events['event_date'];
+                    $weekday = ucwords(utf8_encode(strftime("%A", strtotime($date))));
+
+                    echo $weekday;
+                }
+                
+              
+
+
+
+            ?>
 
             <div id="eventos" class="eventos clearfix">
                 <h3>Elige tus talleres</h3>
@@ -198,7 +228,7 @@
                         <p>Total: USD <span id="total-sum"></span></p>
 
                         <input type="hidden" name="total_amount" id="total_amount">
-                        <input type="submit" name="submit" id="btnregister" class="button" value="Pagar">
+                        <input type="submit" name="submit" id="btnregister" class="button" value="Pagar" disabled="true">
                     </div>
                 </div>
             </div>

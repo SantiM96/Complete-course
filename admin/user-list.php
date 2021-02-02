@@ -65,11 +65,38 @@
                                         
                                         while($user = $registers->fetch_assoc()) {  ?>
                                             <tr>
-                                                <td><?php echo $user['name_user'] . " " . $user['surname_user']; ?></td>
+                                                <td><?php 
+                                                    echo $user['name_user'] . " " . $user['surname_user']; 
+
+                                                    $payed = $user['payed'];
+                                                    if($payed)  echo '<br><span class="badge bg-green">Pago</span>';
+                                                    else        echo '<br><span class="badge bg-red">No Pago</span>';
+                                                ?></td>
                                                 <td><?php echo $user['email_user']; ?></td>
                                                 <td><?php echo $user['date_register']; ?></td>
-                                                <td><?php echo $user['articles_pass']; ?></td>
-                                                <td><?php echo $user['packs_register']; ?></td>
+                                                <td class="min-width"><?php 
+                                                    $pass_esp_single = array(
+                                                        'one_day' => 'pase de 1 día',
+                                                        'two_days' => 'pase de 2 días',
+                                                        'complete_pass' => 'pase completo',
+                                                        'shirts' => 'camisa',
+                                                        'labels' => 'etiqueta'
+                                                    );
+                                                    $pass_esp_multi = array(
+                                                        'one_day' => 'pases de 1 día',
+                                                        'two_days' => 'pases de 2 días',
+                                                        'complete_pass' => 'pases completos',
+                                                        'shirts' => 'camisas',
+                                                        'labels' => 'etiquetas'
+                                                    );
+
+                                                    $articles = json_decode($user['articles_pass']);
+                                                    foreach($articles as $key => $article) {
+                                                        if($article == 1) echo $article . " " . $pass_esp_single[$key] . "<br>";
+                                                        else              echo $article . " " . $pass_esp_multi[$key] . "<br>";
+                                                    }
+                                                ?></td>
+                                                <td><?php echo $user['packs_register']; ?></td> 
                                                 <td><?php echo $user['name_gift']; ?></td>
                                                 <td><?php echo $user['total_amount']; ?></td>
                                              

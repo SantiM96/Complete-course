@@ -3,9 +3,6 @@
 if(!isset($_POST['submit'])) exit("Hubo un error");
 
 
-
-
-
 use PayPal\Api\Payer;
 use PayPal\Api\Item;
 use PayPal\Api\ItemList;
@@ -35,8 +32,8 @@ include_once 'includes/functions/functions.php';
 $order = $_POST['order'];
 $register = $_POST['register'];
 $extra = $_POST['extra'];
-$shirts = $extra['shirts'];
-$labels = $extra['labels'];
+$shirts = $extra['shirts']['quantity'];
+$labels = $extra['labels']['quantity'];
 
 $json_order = product_json($order, $shirts, $labels);
 $json_events = events_json($register_event);

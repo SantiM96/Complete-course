@@ -5,7 +5,6 @@
         <h2>Calendario de Eventos</h2>
 
         <?php 
-            // link to database
             try {
                 require_once('includes/functions/conection.php');
                 $sql = " SELECT id_event, event_name, event_date, event_time, category, icon, guest_name, guest_surname FROM events ";
@@ -54,7 +53,7 @@
                         <i class="fa fa-calendar"></i>
                         <?php 
                             setlocale(LC_TIME, 'spanish');
-                            echo strftime( "%d de %B del %Y", strtotime($day) );
+                            echo str_replace("De", "de", ucwords(utf8_encode(strftime("%A, %d de %B del %Y", strtotime($day)))));
                         ?>
                     </h3>
                     <div class="flex-day">

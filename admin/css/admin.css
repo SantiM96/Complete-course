@@ -26,6 +26,9 @@
     min-width: 6rem;
     text-align: center;
 }
+.min-width {
+    min-width: 4.5rem;
+}
 
 
 /* Navegation */
