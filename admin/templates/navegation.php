@@ -189,7 +189,6 @@
 
             </ul>
         </nav>
-        <pre><?php var_dump($_SESSION); ?></pre>
         <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->

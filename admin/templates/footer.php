@@ -63,6 +63,7 @@
 
 <script src="js/app.js"></script>
 <!-- Script -->
+<script src="../js/quotation.js"></script>
 <script src="js/main-admin.js"></script>
 
 

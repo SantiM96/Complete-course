@@ -24,7 +24,7 @@
                 <p id="error"></p>
                 <p id="errorMail"></p>
 
-            </div><!-- #user-date .user-date .caja -->  
+            </div><!-- #user-date .user-date .caja -->
 
             <div id="packs" class="packs">
                 <h3>Elige el número de boletos</h3>
@@ -39,8 +39,8 @@
                                 <li>Todos los Talleres</li>
                             </ul>
                             <div class="order">
-                                <label for="day-pass">Boletos deseados: </label>
-                                <input type="number" name="order[day-pass][quantity]" id="day-pass" min="0" size="10" placeholder="0">
+                                <button class="button button-price">Seleccionar</button>
+                                <input type="hidden" name="order[day-pass][quantity]" id="day-pass" value="0">
                                 <input type="hidden" value="30" name="order[day-pass][price]">
                             </div>
                         </div>
@@ -56,8 +56,8 @@
                                 <li>Todos los Talleres</li>
                             </ul>
                             <div class="order">
-                                <label for="all-pass">Boletos deseados: </label>
-                                <input type="number" name="order[all-pass][quantity]" id="all-day-pass" min="0" size="10" placeholder="0">
+                                <button class="button button-price">Seleccionar</button>
+                                <input type="hidden" name="order[all-pass][quantity]" id="all-day-pass" value="0">
                                 <input type="hidden" value="50" name="order[all-pass][price]">
                             </div>
                         </div>
@@ -73,8 +73,8 @@
                                 <li>Todos los Talleres</li>
                             </ul>
                             <div class="order">
-                                <label for="two-pass">Boletos deseados: </label>
-                                <input type="number" name="order[two-pass][quantity]" id="two-days-pass" min="0" size="10" placeholder="0">
+                                <button class="button button-price">Seleccionar</button>
+                                <input type="hidden" name="order[two-pass][quantity]" id="two-days-pass" value="0">
                                 <input type="hidden" value="45" name="order[two-pass][price]">
                             </div>
                         </div>
@@ -96,97 +96,61 @@
                     echo $e->getMessage();
                 }
 
-                echo "<pre>";
-                    var_dump($result->fetch_assoc());
-                echo "</pre>";
+
+                $all_events = array();
 
                 while ($events = $result->fetch_assoc()) {
                     setlocale(LC_TIME, 'spanish');
                     $date = $events['event_date'];
-                    $weekday = ucwords(utf8_encode(strftime("%A", strtotime($date))));
+                    $weekday_date = ucwords(utf8_encode(strftime("%A - %d/%m/%g", strtotime($date))));
 
-                    echo $weekday;
+                    $day = array(
+                        'event_id' => $events['id_event'],
+                        'event_name' => $events['event_name'],
+                        'event_time' => $events['event_time'],
+                        'guest' => $events['guest_name'] . " " . $events['guest_surname']
+                    );
+
+                    $all_events[$weekday_date]["events"][$events['category']][] = $day;
                 }
-                
-              
-
-
-
             ?>
 
             <div id="eventos" class="eventos clearfix">
                 <h3>Elige tus talleres</h3>
                 <div class="caja clearfix">
 
-                    <div id="viernes" class="contenido-dia clearfix">
-                        <h4>Viernes</h4>
-                        <div>
-                            <p>Talleres:</p>
-                            <label><input type="checkbox" name="register[]" id="taller_01" value="taller_01"><time>10:00</time> Responsive Web Design</label>
-                            <label><input type="checkbox" name="register[]" id="taller_02" value="taller_02"><time>12:00</time> Flexbox</label>
-                            <label><input type="checkbox" name="register[]" id="taller_03" value="taller_03"><time>14:00</time> HTML5 y CSS3</label>
-                            <label><input type="checkbox" name="register[]" id="taller_04" value="taller_04"><time>17:00</time> Drupal</label>
-                            <label><input type="checkbox" name="register[]" id="taller_05" value="taller_05"><time>19:00</time> WordPress</label>
-                        </div>
-                        <div>
-                            <p>Conferencias:</p>
-                            <label><input type="checkbox" name="register[]" id="conf_01" value="conf_01"><time>10:00</time> Como ser Freelancer</label>
-                            <label><input type="checkbox" name="register[]" id="conf_02" value="conf_02"><time>17:00</time> Tecnologías del Futuro</label>
-                            <label><input type="checkbox" name="register[]" id="conf_03" value="conf_03"><time>19:00</time> Seguridad en la Web</label>
-                        </div>
-                        <div>
-                            <p>Seminarios:</p>
-                            <label><input type="checkbox" name="register[]" id="sem_01" value="sem_01"><time>10:00</time> Diseño UI y UX para móviles</label>
-                        </div>
-                    </div><!--#viernes-->
+                    <?php foreach($all_events as $day => $event) { ?>
 
-                    <div id="sabado" class="contenido-dia clearfix">
-                        <h4>Sábado</h4>
-                        <div>
-                            <p>Talleres:</p>
-                            <label><input type="checkbox" name="register[]" id="taller_06" value="taller_06"><time>10:00</time> AngularJS</label>
-                            <label><input type="checkbox" name="register[]" id="taller_07" value="taller_07"><time>12:00</time> PHP y MySQL</label>
-                            <label><input type="checkbox" name="register[]" id="taller_08" value="taller_08"><time>14:00</time> JavaScript Avanzado</label>
-                            <label><input type="checkbox" name="register[]" id="taller_09" value="taller_09"><time>17:00</time> SEO en Google</label>
-                            <label><input type="checkbox" name="register[]" id="taller_10" value="taller_10"><time>19:00</time> DePhotoshop a HTML5 y CSS3</label>
-                            <label><input type="checkbox" name="register[]" id="taller_11" value="taller_11"><time>21:00</time> PHPMedio y Avanzado</label>
-                        </div>
-                        <div>
-                            <p>Conferencias:</p>
-                            <label><input type="checkbox" name="register[]" id="conf_04" value="conf_04"><time>10:00</time> Comocrear una tienda online que venda millones en pocos días</label>
-                            <label><input type="checkbox" name="register[]" id="conf_05" value="conf_05"><time>17:00</time> Los mejores lugares para encontrar trabajo</label>
-                            <label><input type="checkbox" name="register[]" id="conf_06" value="conf_06"><time>19:00</time> Pasos para crear un negocio rentable</label>
-                        </div>
-                        <div>
-                            <p>Seminarios:</p>
-                            <label><input type="checkbox" name="register[]" id="sem_02" value="sem_02"><time>10:00</time> Aprende a Programar en una mañana</label>
-                            <label><input type="checkbox" name="register[]" id="sem_03" value="sem_03"><time>17:00</time> Diseño UI y UX para móviles</label>
-                        </div>
-                    </div><!--#sabado-->
+                        <div id="<?php echo strtolower(str_replace("á", "a", $day)); ?>" class="contenido-dia clearfix">
+                            <h4><?php echo $day; ?></h4>
 
-                    <div id="domingo" class="contenido-dia clearfix">
-                        <h4>Domingo</h4>
-                        <div>
-                            <p>Talleres:</p>
-                            <label><input type="checkbox" name="register[]" id="taller_12" value="taller_12"><time>10:00</time> Laravel</label>
-                            <label><input type="checkbox" name="register[]" id="taller_13" value="taller_13"><time>12:00</time> Creatu propia API</label>
-                            <label><input type="checkbox" name="register[]" id="taller_14" value="taller_14"><time>14:00</time> JavaScript y jQuery</label>
-                            <label><input type="checkbox" name="register[]" id="taller_15" value="taller_15"><time>17:00</time> Creando Plantillas para WordPress</label>
-                            <label><input type="checkbox" name="register[]" id="taller_16" value="taller_16"><time>19:00</time> Tiendas Virtuales en Magento</label>
-                        </div>
-                        <div>
-                            <p>Conferencias:</p>
-                            <label><input type="checkbox" name="register[]" id="conf_07" value="conf_07"><time>10:00</time> Comohacer Marketing en línea</label>
-                            <label><input type="checkbox" name="register[]" id="conf_08" value="conf_08"><time>17:00</time> ¿Con que lenguaje debo empezar?</label>
-                            <label><input type="checkbox" name="register[]" id="conf_09" value="conf_09"><time>19:00</time> Frameworks y librerias Open Source</label>
-                        </div>
-                        <div>
-                            <p>Seminarios:</p>
-                            <label><input type="checkbox" name="register[]" id="sem_04" value="sem_04"><time>14:00</time> Creandouna App en Android en una tarde</label>
-                            <label><input type="checkbox" name="register[]" id="sem_05" value="sem_05"><time>17:00</time> Creandouna App en iOS en una tarde</label>
-                        </div>
-                    </div><!--#domingo-->
+                            <?php foreach ($event['events'] as $category => $data_event) { ?>
 
+                                <div>
+                                    <p><?php echo $category ?>:</p>
+
+                                    <?php foreach ($data_event as $data) { 
+
+                                        //format string time to remove the last ":00"
+                                        $event_time = $data['event_time']; 
+                                        $event_time = substr($event_time, 0, -3); ?>
+
+                                        <label>
+                                            <input type="checkbox" name="register[]" id="<?php echo $data['event_id']; ?>" class="checkbox <?php echo strtolower(substr(str_replace("á", "a", $day), 0, -11) . "check"); ?>" value="<?php echo $data['event_id']; ?>">
+                                            <time><?php echo $event_time; ?></time> <?php echo $data['event_name']; ?>
+                                            <span class="guest-from-event"> (<?php echo $data['guest']?>)</span>
+                                        </label>
+                    
+                                    <?php } ?>
+
+                                </div>
+
+                            <?php } ?>
+
+                        </div><!--#<?php echo strtolower(str_replace("á", "a", $day)); ?> .contenido-dia-->
+
+                    <?php } ?>
+            
                 </div><!--.caja-->
             </div><!--#eventos-->
 
@@ -201,7 +165,7 @@
                         </div><!-- .orden -->
                         <div class="orden">
                             <label for="labels-event">Paquete de 10 etiquetas $2 <small>(HTML5, CCS3, JavaScript)</small></label>
-                            <input type="number" name="extra[labels][quantity]" id="labels.event" min="0" size="10" placeholder="0">
+                            <input type="number" name="extra[labels][quantity]" id="labels-event" min="0" size="10" placeholder="0">
                             <input type="hidden" value="2" name="extra[labels][price]">
                         </div><!-- .orden -->
                         <div class="orden">
@@ -232,8 +196,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Finish Imported -->
 
         </form>
     </section>

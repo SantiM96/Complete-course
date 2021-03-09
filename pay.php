@@ -22,6 +22,7 @@ $email = $_POST['email'];
 $register_event = $_POST['register'];
 $gift = $_POST['gift'];
 $payed = 0;
+date_default_timezone_set('America/Montevideo');
 $date = date('y-m-d // H:i:s');
 $total_amount = $_POST['total_amount'];
 if($gift == "pulsera") $id_gift = 1;

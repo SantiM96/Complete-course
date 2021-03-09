@@ -55,6 +55,27 @@
             })
         }
 
+        function formatGift(gift) { 
+            if (gift.value === "Pulsera") return 1
+            if (gift.value === "Etiqueta") return 2
+            if (gift.value === "Pluma") return 3
+        }
+
+        function spliter(number) {
+            number += ""
+            let total = ""
+            if (number.split(".").length > 1) {
+                let splited = number.split(".")
+                let after = splited[1].substr(0, 2)
+                if (after.length > 1) after = Math.round(after / 10)
+                total = parseFloat(splited[0] + "." + after)
+            }
+            else { 
+                total = parseInt(number)
+            }
+            return total
+        }
+
 
         //get the last value of the url
         let urlNumber = window.location.href.split("/").length
@@ -1235,6 +1256,343 @@
                 }
             })
         }
+
+
+        /* Section Register User */
         
+        //add users
+        if (url === "user-add.php") { 
+            let addUserButton = document.querySelector('.card-footer button')
+            addUserButton.addEventListener('click', function (e) {
+                e.preventDefault()
+
+                let name = document.getElementById('name'),
+                    surname = document.getElementById('surname'),
+                    email = document.getElementById('email'),
+                    packs = document.querySelectorAll('.price-table'),
+                    pack = "0"
+                
+                //take the selected pack
+                packs.forEach((eachPack) => { 
+                    if (eachPack.style.opacity === "1") { 
+                        pack = eachPack.childNodes[7].childNodes[3].id
+                        if (pack === "day-pass") pack = "one_day"
+                        if (pack === "two-days-pass") pack = "two_days"
+                        if (pack === "all-day-pass") pack = "complete_pass"
+                    }
+                })
+
+                //add checkboxes selected to the array
+                let eventsChecks = new Object()
+                eventsChecks.events = []
+                document.querySelectorAll(".checkbox").forEach(function (check) {
+                    if (check.checked) {
+                        eventsChecks['events'].push(check.id)
+                    }
+                })
+                let eventsChecksJSON = JSON.stringify(eventsChecks)
+
+                //take extras and total amount
+                let shirts = document.getElementById('shirts-event'),
+                    labels = document.getElementById('labels-event'),
+                    gift = document.getElementById('gift'),
+                    total = document.getElementById('total-sum').textContent
+
+                if(gift.value == "pulsera") gift = 1
+                if(gift.value == "etiqueta") gift = 2
+                if(gift.value == "pluma") gift = 3
+
+
+
+                //include pack and extras in one JSON
+                let articles = new Object()
+                if (pack != "0") articles[pack] = 1
+                else articles['Ninguno'] = 0
+                articles['shirts'] = parseInt(shirts.value)
+                articles['labels'] = parseInt(labels.value)
+                let articlesJSON = JSON.stringify(articles)
+
+
+                //call ajax
+                let xhr = new XMLHttpRequest()
+
+                let data = new FormData()
+                data.append("name_user", name.value)
+                data.append("surname_user", surname.value)
+                data.append("email_user", email.value)
+                data.append("articles", articlesJSON)
+                data.append("events", eventsChecksJSON)
+                data.append("gift", gift)
+                data.append("total", total)
+                data.append("action", "create")
+
+                //open connection
+                xhr.open('POST', 'user-backend.php', true)
+                
+                //return data
+                xhr.onload = function () { 
+                    if (this.status === 200) { 
+                        let answer = JSON.parse(xhr.responseText)
+
+                        if (answer.answer == "success") { 
+                            swal({
+                                type: 'success',
+                                title: 'Creado',
+                                text: 'El usuario fue creado con éxito'
+                            }).catch(() => swal.close(window.location.href = "user-list.php")).then((result) => {
+                                if (result) {
+                                    window.location.href = "user-list.php"
+                                }
+                            })
+                        }
+                        
+                    }
+                }
+
+                //send data
+                xhr.send(data)
+            })
+        }
+
+        //edit users
+        if (url === "user-edit.php") {
+
+            let idUser = document.getElementById('id-user').value,
+                nameUserOld = document.getElementById('name').value,
+                surnameUserOld = document.getElementById('surname').value,
+                emailUserOld = document.getElementById('email').value,
+                allPassOld = document.querySelectorAll('.price-table'),
+                passUserObjectOld = new Object(),
+                passUserJsonOld = "",
+                allEventsOld = document.querySelectorAll('.checkbox'),
+                eventsUserArrayOld = [],
+                eventsUserObjectOld = new Object(),
+                eventsUserJsonOld = "",
+                shirtsOld = document.getElementById('shirts-event'),
+                labelsOld = document.getElementById('labels-event'),
+                giftOld = formatGift(document.getElementById('gift')),
+                markPayed = false,
+                markUnpayed = false
+            
+
+            //get old price of the pass
+            allPassOld.forEach(function (pass) { if (pass.style.opacity == 1) passUserObjectOld[pass.id.replace("-", "_")] = 1 })
+
+            //get old subscribed events
+            allEventsOld.forEach(function (checkbox) { if (checkbox.checked) eventsUserArrayOld.push(checkbox.id) })
+            eventsUserObjectOld.events = eventsUserArrayOld;
+            eventsUserJsonOld = JSON.stringify(eventsUserObjectOld)
+
+            //add to passUserObject the old extras
+            passUserObjectOld.shirts = parseInt(shirtsOld.value)
+            passUserObjectOld.labels = parseInt(labelsOld.value)
+            passUserJsonOld = JSON.stringify(passUserObjectOld)
+
+
+
+            //send changes
+            let calculateButton = document.getElementById('calculate'),
+                registerButton = document.getElementById('btnregister')
+           
+            calculateButton.click()
+            let priceOld = parseFloat(document.getElementById('total-sum').textContent)
+
+            //can only be one checked at the same time
+            if (document.getElementById('payed-mark')) {
+                markPayed = document.getElementById('payed-mark')
+                markUnpayed = document.getElementById('unpayed-mark')
+
+                markPayed.addEventListener('click', function () { markUnpayed.childNodes[0].checked = false })
+                markUnpayed.addEventListener('click', function () { markPayed.childNodes[0].checked = false })
+            }
+
+
+
+            registerButton.addEventListener('click', function(e) {
+                e.preventDefault()
+                calculateButton.click()
+
+                let nameUser = document.getElementById('name').value,
+                    surnameUser = document.getElementById('surname').value,
+                    emailUser = document.getElementById('email').value,
+                    allPass = document.querySelectorAll('.price-table'),
+                    passUserObject = new Object(),
+                    passUserJson = "",
+                    allEvents = document.querySelectorAll('.checkbox'),
+                    eventsUserArray = [],
+                    eventsUserObject = new Object(),
+                    eventsUserJson = "",
+                    shirts = document.getElementById('shirts-event'),
+                    labels = document.getElementById('labels-event'),
+                    gift = formatGift(document.getElementById('gift')),
+                    price = parseFloat(document.getElementById('total-sum').textContent)
+                
+                if (document.getElementById('payed-mark')) {
+                    markPayed = document.getElementById('payed-mark').childNodes[0].checked
+                    markUnpayed = document.getElementById('unpayed-mark').childNodes[0].checked
+                }
+ 
+
+                //get price of the pass
+                allPass.forEach(function (pass) {
+                    if (parseFloat(pass.style.opacity) == 1) {
+                        if (pass.childNodes[7].childNodes[3].id == "day-pass") passUserObject['one_day'] = 1
+                        if (pass.childNodes[7].childNodes[3].id == "two-days-pass") passUserObject['two_days'] = 1
+                        if (pass.childNodes[7].childNodes[3].id == "all-day-pass") passUserObject['complete_pass'] = 1
+                    }
+                })
+
+                //get subscribed events
+                allEvents.forEach(function (checkbox) { if (checkbox.checked) eventsUserArray.push(checkbox.id) })
+                eventsUserObject.events = eventsUserArray;
+                eventsUserJson = JSON.stringify(eventsUserObject)
+
+                //add to passUserObject the extras
+                passUserObject.shirts = parseInt(shirts.value)
+                passUserObject.labels = parseInt(labels.value)
+                passUserJson = JSON.stringify(passUserObject)
+
+                
+                //validations
+                if (nameUserOld === nameUser && surnameUserOld === surnameUser && emailUserOld === emailUser &&
+                    passUserJsonOld === passUserJson && eventsUserJsonOld === eventsUserJson && giftOld === gift &&
+                    !markPayed && !markUnpayed) { 
+                    
+                    console.log("No hay cambios")
+                }
+                else {
+                    let difference = spliter(price - priceOld)
+
+                    let data = new FormData()
+                    data.append('idUser', idUser)
+                    data.append('nameUser', nameUser)
+                    data.append('surnameUser', surnameUser)
+                    data.append('emailUser', emailUser)
+                    data.append('passUserJson', passUserJson)
+                    data.append('eventsUserJson', eventsUserJson)
+                    data.append('gift', gift)
+                    data.append('price', price)
+                    data.append('difference', difference)
+                    data.append('markPayed', markPayed)
+                    data.append('markUnpayed', markUnpayed)
+                    data.append('action', 'edit')
+
+
+                    let xhr = new XMLHttpRequest()
+
+                    xhr.open('POST','user-backend.php', true)
+
+                    xhr.onload = function () { 
+                        if (this.status === 200) { 
+                            let answer = JSON.parse(xhr.responseText)
+
+                            if (answer.answer == "success") { 
+                                swal({
+                                    type: 'success',
+                                    title: 'Guardado',
+                                    text: 'Todos los cambios se guardaron correctamente'
+                                }).catch(() => swal.close(window.location.href = "user-list.php")).then((result) => {
+                                    if (result) {
+                                        window.location.href = "user-list.php"
+                                    }
+                                })
+                            }
+
+                        }
+                    }
+                    
+                    xhr.send(data) 
+                }
+
+            })
+          
+        }
+
+        //show events for each user and delete
+        if (url === "user-list.php") { 
+            //delegation to delete or show events
+            const delegation = document.querySelector('#registers')
+            delegation.addEventListener('click', function (e) {
+                let id = e.target.id
+
+                //show events
+                if (e.target.className == "btn bg-green") {
+                    e.preventDefault()
+                    let events = e.target.value
+
+                    swal({
+                        title: 'Eventos del Usuario',
+                        html: '<div class="align-left show-alert">' + events + '</div>'
+                    }).catch(() => swal.close())
+
+                }
+
+                //delete user
+                if (e.target.className === "fa fa-trash") id = e.target.parentNode.id
+                if (id !== "" && id !== "registers") {
+                    e.preventDefault()
+                    let target = e.target
+                    if(target.className == "fa fa-trash") target = target.parentNode
+
+
+                    swal({
+                        icon: 'warning',
+                        title: '¿Estás seguro?',
+                        text: "El usuario será borrado permanentemente",
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Borrar',
+                        cancelButtonText: 'Cancelar'
+                    }).catch(() => swal.close()).then((result) => {
+                        if (result) {
+                            let xhr = new XMLHttpRequest()
+
+                            let data = new FormData()
+                            data.append('id', id)
+                            data.append('action', 'delete')
+
+                            xhr.open('POST', 'user-backend.php', true)
+
+                            xhr.onload = function () {
+                                if (this.status === 200) {
+                                    let answer = JSON.parse(xhr.responseText)
+
+                                    if (answer.answer == "success") {
+                                        swal({
+                                            type: 'success',
+                                            title: 'Usuario Eliminado',
+                                            text: `El usuario "${answer.name}" fue eliminado correctamente`
+                                        }).catch(() => window.location.href = "user-list.php").then((result) => {
+                                            if (result) {
+                                                window.location.href = "user-list.php"
+                                            }
+                                        })
+                                    }
+                                    if (answer.answer == "error") {
+                                        if (answer.error == "something_paid") {
+                                            swal({
+                                                type: 'error',
+                                                title: 'Error',
+                                                text: 'El usuario ya ha realizado algún pago'
+                                            }).catch(() => swal.close())
+                                        }
+                                        else {
+                                            swal({
+                                                type: 'error',
+                                                title: 'Error',
+                                            }).catch(() => swal.close())
+                                        }
+                                    }
+                                
+                                }
+                            }
+
+                            xhr.send(data)
+                        }
+                    }).catch(() => swal.close())
+                }     
+            })  
+        }
     });
 })();

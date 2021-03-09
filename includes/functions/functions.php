@@ -1,4 +1,5 @@
-<?php function product_json(&$order, &$shirts = 0, &$labels = 0) {
+<?php 
+    function product_json(&$order, &$shirts = 0, &$labels = 0) {
         $days = array(
             0 => 'one_day', 
             1 => 'complete_pass', 

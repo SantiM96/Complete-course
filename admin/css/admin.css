@@ -9,11 +9,14 @@
 .align-right {
     text-align: right;
 }
+.align-left {
+    text-align: left;
+}
 .align-center {
     text-align: center;
 }
 .section-small  {
-    width: 100%;
+    width: 100%;    
     max-width: 27rem;
     margin: 0 auto;
 }
@@ -27,13 +30,64 @@
     text-align: center;
 }
 .min-width {
-    min-width: 4.5rem;
+    min-width: 10rem;
+}
+.min-width-long {
+    min-width: 20rem;
+}
+.number {
+    font-size: 4rem!important;
+    margin: 0;
+    color: #fe4118;
+    font-family: 'Oswald', sans-serif;
+}
+.button {
+    display: block;
+    background-color: #fe4118;
+    color: white;
+    padding: .5rem 1.5rem;
+    margin-top: 2rem;
+    font-weight: bold;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+    border-radius: 0.3rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    transition: all .3s ease;
+    line-height: 2.3;
+    border: 2px solid #fe4118;
+}
+@media (min-width: 480px) {
+    .button {
+        display: inline;
+    }
+}
+.button:hover {
+    background-color: #e33000;
+    color: white;
+    border: 2px solid #e33000;
 }
 
 
 /* Navegation */
 .info {
     margin: 0 auto;
+}
+
+
+/** Dashboard **/
+
+.dashboard-title {
+    display: flex;
+    align-items: flex-end;
+}
+.dashboard-title h2 {
+    margin: 0;
+}
+.dashboard-title small {
+    margin: 0 0 .2rem .3rem;
+    color: #575757;
 }
 
 
@@ -109,3 +163,196 @@ tbody tr td img {
     width: 5rem;
 }
 
+/** Registers **/
+form#register h3 {
+    text-align: center;
+    margin: 2rem 0;
+}
+.user-date h3 {
+    margin-top: 0!important;
+}
+.user-date p {
+    text-align: center;
+    color: red;
+}
+.price-list {
+    width: 80%;
+    min-width: 13rem;
+    padding: 0;
+}
+@media (min-width: 480px) {
+    .price-list {
+        width: 60%;
+    }
+}
+@media (min-width: 768px) {
+    .price-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        width: 100%;
+    }
+}
+.price-list li {
+    list-style: none;
+}
+.price-table {
+    text-align: center;
+    background-color: #f7f7f7;
+    border: 2px solid #e1e1e1;
+    border-radius: .4rem;
+    transition: all .3s ease;
+    margin-bottom: 2rem;
+}
+.price-table:hover {
+    box-shadow: #e4e3e3 0rem 0rem 1rem 0.5rem;
+}
+.price-table h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.4rem;
+    margin: 2.5rem .2rem 0 .2rem;
+    min-height: 5.5rem;
+    text-align: center;
+    color: #fe4918;
+    text-transform: uppercase;
+}
+.price-table p {
+    margin-bottom: 1rem;
+    color: black;
+}
+.ticks {
+    padding: 0;
+}
+.ticks li {
+    font-family: 'PT Sans', sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    font-size: .75rem;
+    color: #575757;
+    text-align: center;
+}
+.ticks li::before {
+    font-family: 'fontAwesome';
+    content: '\f00c';
+    color: green;
+    font-size: 1rem;
+    padding-right: 0.5rem;
+}
+.button-price {
+    display: inline-block;
+    line-height: 1.5;
+    margin: 2rem 0 4rem 0;
+}
+.hollow {
+    background-color: white;
+    color: #fe4118;
+}
+.order {
+    margin-top: 2.5rem;
+}
+.order label {
+    width: 100%;
+}
+.order input,
+.orden input {
+    width: 4rem;
+    padding-left: .75rem;
+    border-radius: .75rem;
+    background-color: #f1f1f1;
+    border: 1.75px solid #929292; 
+    margin-bottom: 2rem;
+    text-align: center;
+}
+.orden input {
+    width: 11rem;
+}
+.contenido-dia {
+    margin-bottom: 3rem;
+    display: none;
+    font-size: .9rem;
+}
+.contenido-dia h4 {
+    text-align: center;
+    text-transform: uppercase;
+    border-bottom: 2px solid #fe4918;
+    padding-bottom: 1rem;
+}
+.contenido-dia > div p {
+    text-align: left;
+    font-size: 1.1rem;
+    margin-top: 2rem;
+}
+.contenido-dia > div label {
+    display: block;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+.contenido-dia > div input {
+    color: #575757;
+}
+.contenido-dia > div label time {
+    color: #fe4918;
+    font-weight: bold;
+}
+.guest-from-event {
+    color: #666666;
+    font-size: .6rem;
+    margin: 0;
+    transition: all .5s ease;
+}
+.guest-from-event:hover {
+    color: #383838;
+    font-size: .8rem;
+}
+.extras .orden select {
+    display: block;
+    background-color: #f1f1f1;
+    margin: 0;
+    width: 12rem;
+    text-align: center;
+    border-radius: .75rem;
+}
+.resumen .extras {
+    float: left;
+    width: 70%;
+}
+.resumen .total {
+    float: left;
+    width: 30%;
+}
+.resumen .total > p {
+    font-size: 2rem;
+    text-transform: uppercase;
+    text-align: left;
+}
+.extras .orden {
+    text-align: left;
+    margin-bottom: 1.5rem;
+}
+
+.total input {
+    display: block;
+    margin: 4rem auto;
+}
+.total #lista-productos,
+.total span {
+    margin: 0;
+    padding: 0;
+    font-size: 1.4rem;
+    line-height: 1.4;
+    text-align: left;
+    margin-bottom: 2rem;
+}
+.total #lista-productos {
+    width: 80%;
+    margin: 0 0 0 auto;
+    font-size: 1.2rem;
+}
+.total span {
+    font-size: 2.2rem;
+}
+.show-alert {
+    width: 85%;
+    margin: 0 auto;
+    line-height: 1.3;
+}

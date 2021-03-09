@@ -2,7 +2,7 @@
 
 require 'paypal/autoload.php';
 
-define('URL_SITE', 'http://localhost:8080/complete_course_XAMPP');
+define('URL_SITE', 'http://localhost:8080/complete-course');
 
 $apiContext = new \PayPal\Rest\ApiContext (
     new \PayPal\Auth\OAuthTokenCredential(

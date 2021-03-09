@@ -51,6 +51,8 @@
             echo '<script src="js/lightbox.min.js"></script>';
         }
     ?>
+    
+    <script src="js/quotation.js"></script>
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
     <script src="js/main.js"></script>
 
@@ -60,6 +62,13 @@
         ga('create', 'UA-XXXXX-Y', 'auto'); ga('set','transport','beacon'); ga('send', 'pageview')
     </script>
     <script src="https://www.google-analytics.com/analytics.js" async></script>
+    <?php
+        // Guarda todo el contenido a un archivo
+        $fp = fopen($archivoCache, 'w');
+        fwrite($fp, ob_get_contents());
+        fclose($fp);
+        // Enviar al navegador
+        ob_end_flush();
+    ?>
 </body>
-
 </html>
