@@ -19,7 +19,3 @@ function count_gift($id_gift) {
 
     return dirname(dirname( __DIR__ ));
 }
-
-
-
-

@@ -48,18 +48,6 @@
 <script src="js/fontawesome-iconpicker.min.js"></script>
 <!-- Sweetalert2 -->
 <script src="js/sweetalert2.min.js"></script>
-<?php if(currentlyPage() === "event-edit" || currentlyPage() === "event-add") { ?>
-    <!-- InputMask -->
-    <script src="js/moment.min.js"></script>
-    <script src="js/jquery.inputmask.min.js"></script>
-    <!-- date-range-picker -->
-    <script src="js/daterangepicker.js"></script>
-    <script src="js/tempusdominus-bootstrap-4.min.js"></script>
-    <!-- Page specific script -->
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-    <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
-<?php } ?>
-
 
 <script src="js/app.js"></script>
 <!-- Script -->

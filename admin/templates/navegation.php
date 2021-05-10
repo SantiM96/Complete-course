@@ -164,29 +164,6 @@
                     </li>
                 <?php } ?>
 
-                <!-- Testimonials -->
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon far fa-comments"></i>
-                        <p>Testimoniales<i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link margin-left">
-                                <i class="fas fa-list-ul nav-icon"></i>
-                                <p>Ver Todos</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link margin-left">
-                                <i class="fas fa-plus nav-icon"></i>
-                                <p>Agregar</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

@@ -27,6 +27,7 @@
             </div>
         </section>
         <p class="copyright">Todos los derechos Reservados GDLWEBCAMP 2020.</p>
+        <p class="copyright">Esta es una página echa a modo de práctica, no es real.</p>
     </footer>
 
 

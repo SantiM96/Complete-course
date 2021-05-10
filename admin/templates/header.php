@@ -23,10 +23,7 @@
     <link rel="stylesheet" href="css/sweetalert2.min.css">
     <!-- daterange picker -->
     <link rel="stylesheet" href="css/daterangepicker.css">
-    <?php  include_once 'functions/functions-admin.php';
-    if(currentlyPage() === "event-edit" || currentlyPage() === "event-add") { ?>
-        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
-    <?php } ?>
+    <?php  include_once 'functions/functions-admin.php'; ?>
     
     <!-- Theme style -->
     <link rel="stylesheet" href="css/adminlte.min.css">

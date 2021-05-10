@@ -5,7 +5,7 @@ if(isset($_POST['action'])) {
 
     require_once '../includes/functions/conection.php';
     date_default_timezone_set('America/Montevideo');
-    $date = date('y-m-d // H:i:s');
+    $date = date('Y-m-d H:i:s');
 
 
     if($action === "create") {
@@ -19,8 +19,7 @@ if(isset($_POST['action'])) {
         $payed = 0;
 
         try {
-            $stmt = $conn->prepare("INSERT INTO registers (name_user, surname_user, email_user, date_register, articles_pass, 
-                                                           packs_register, gift, total_amount, payed) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt = $conn->prepare("INSERT INTO registers (name_user, surname_user, email_user, date_register, articles_pass, packs_register, gift, total_amount, payed) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
             $stmt->bind_param('ssssssisi', $name_user, $surname_user, $email_user, $date, $articles, $events, $gift, $total, $payed);
             $stmt->execute();
 

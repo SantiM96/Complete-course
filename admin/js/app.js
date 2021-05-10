@@ -2,7 +2,7 @@
 let urlNumber = window.location.href.split("/").length
 let url = window.location.href.split("/", urlNumber)[urlNumber - 1].split("?")[0].split("#")[0]
 
-if (url === "event-edit.php" || url === "event-add.php") {
+/*if (url === "event-edit.php" || url === "event-add.php") {
     //Timepicker, Date range picker, Datemask
     $(function () {
         //translate
@@ -28,7 +28,7 @@ if (url === "event-edit.php" || url === "event-add.php") {
             $("#date").datepicker();
         });
     })
-}
+}*/
 
 if (url === "admin-list.php" || url === "event-list.php" ||
     url === "category-list.php" || url === "guests-list.php" ||

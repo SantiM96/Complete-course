@@ -23,7 +23,7 @@ $register_event = $_POST['register'];
 $gift = $_POST['gift'];
 $payed = 0;
 date_default_timezone_set('America/Montevideo');
-$date = date('y-m-d // H:i:s');
+$date = date('Y-m-d H:i:s');
 $total_amount = $_POST['total_amount'];
 if($gift == "pulsera") $id_gift = 1;
 if($gift == "etiqueta") $id_gift = 2;
@@ -48,17 +48,15 @@ try {
     $id_return = $stmt->insert_id;
     $stmt->close();
     $conn->close();
-    //header("Location: validate_register.php?success=1");
 }
-catch (\Exception $e) {
+catch (Exception $e) {
     echo $e->getMessage();
 }
 
 
+
 $payer = new Payer();
 $payer->setPaymentMethod("paypal");
-
-
 
 $i = 0;
 $itemListProducts = array();
@@ -71,14 +69,6 @@ foreach($order as $key => $value) {
                     ->setCurrency('USD')
                     ->setQuantity((int)$value['quantity'])
                     ->setPrice((int)$value['price']);
-
-
-        
-        /*
-        echo ${"item$i"}->getName() . "  ";
-        echo ${"item$i"}->getQuantity() . "  ";
-        echo ${"item$i"}->getPrice() . "  ";
-        echo "<hr>";*/
         $i++;
     }
 }
@@ -96,12 +86,6 @@ foreach($extra as $key => $value) {
                     ->setCurrency('USD')
                     ->setQuantity((int)$value['quantity'])
                     ->setPrice($price);
-        
-        /*
-        echo ${"item$i"}->getName() . "  ";
-        echo ${"item$i"}->getQuantity() . "  ";
-        echo ${"item$i"}->getPrice() . "  ";
-        echo "<hr>";*/
         $i++;
     }
 }
@@ -110,17 +94,9 @@ foreach($extra as $key => $value) {
 $itemList = new ItemList();
 $itemList->setItems($itemListProducts);
 
-
 $amount = new Amount();
 $amount->setCurrency('USD')
        ->setTotal($total_amount);
-
-
-//echo "Amount" . "<hr>";
-//echo $amount->getCurrency() . "-----";
-//echo $amount->getTotal() . "-----";
-//echo $amount->getDetails() . "<hr>";
-
 
 $transaction = new Transaction();
 $transaction->setAmount($amount)
@@ -128,22 +104,9 @@ $transaction->setAmount($amount)
             ->setDescription('Pago ')
             ->setInvoiceNumber($id_return);
 
-
-//echo "Transaction" . "<hr>";
-//echo $transaction->getAmount() . "-----";
-//echo $transaction->getItemList() . "-----";
-//echo $transaction->getDescription() . "-----";
-//echo $transaction->getInvoiceNumber() . "<hr>";
-
-
 $redirect = new RedirectUrls();
 $redirect->setReturnUrl(URL_SITE . "/payment_completed.php?success=true&id_user={$id_return}")
         ->setCancelUrl(URL_SITE . "/payment_completed.php?success=false&id_user={$id_return}");
-
-
-//echo "RedirectUrls" . "<hr>";
-//echo $redirect->getReturnUrl() . "-----";
-//echo $redirect->getCancelUrl() . "<hr>";
 
 $payment = new Payment();
 $payment->setIntent("sale")
@@ -151,7 +114,6 @@ $payment->setIntent("sale")
         ->setRedirectUrls($redirect)
         ->setTransactions(array($transaction));
 
-//echo $payment->getTransactions();
 
 
 try {

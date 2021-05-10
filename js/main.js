@@ -31,6 +31,31 @@ $(function() {
         }
     });
 
+    //get the last value of the url
+    let urlNumber = window.location.href.split("/").length
+    let url = window.location.href.split("/", urlNumber)[urlNumber - 1].split("?")[0].split("#")[0]
+    
+    function autoScroll(classOfElement, changePx = 0, time = 750) {
+        let position = $(`${classOfElement}`).offset().top
+        position += changePx
+        $("html, body").animate({
+            scrollTop: position
+        }, time)
+    }
+    
+
+    //Auto scorll in the secundary pages
+    if (url !== "index.php" && url !== "") autoScroll(".bar")
+    //Auto scroll to select pass
+    if (url === "registro.php") {
+        let elements = document.querySelectorAll(".price-table")
+        for (let item of elements) {
+            item.addEventListener('click', function() {
+                autoScroll(".eventos .clearfix", -125)
+            })
+        }
+    }
+    
 
     //Menu responsive
     $('.mobile-menu').on('click', function() {
@@ -44,7 +69,7 @@ $(function() {
     $('body.invitados .main-nav a:contains(Invitados)').addClass('marker');
     $('body.registro .main-nav a:contains(Reservaciones)').addClass('marker-white');
 
-    //Programa del Evento
+    //Program of event
     $('nav a').click(programEvent);
 
     $('.program-event nav a:first').css({ 'background-color': 'rgb(240, 240, 240)' });
@@ -90,7 +115,13 @@ $(function() {
 
 
     //Colorbox
-    if(document.querySelector('.guest-info')) $('.guest-info').colorbox({inline:true, width:"50%"});
+    if (document.querySelector('.guest-info')) {
+        if ($(window).width() < 767) {
+            $('.guest-info').colorbox({ inline: true, width: "85%" })
+        } else {
+            $('.guest-info').colorbox({ inline: true, width: "50%" })
+        }
+    }
 
 });
 
@@ -99,8 +130,7 @@ $(function() {
     'use strict';
    
     document.addEventListener('DOMContentLoaded', function () {
-   
-
+        
         if (document.querySelector(".guest")) {
             let firstImage = document.querySelector(".guest"),
                 firstImageHeightPx = window.getComputedStyle(firstImage, 'height').height,
@@ -150,12 +180,11 @@ $(function() {
                     }
 
 
-
                 }
             }
             adjustImage()
             window.onresize = adjustImage() 
         }
-        
+
     });
 })();

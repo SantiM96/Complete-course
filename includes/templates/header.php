@@ -62,7 +62,7 @@
                         <p class="date"><i class="far fa-calendar-alt"></i> 10-12 Dic</p>
                         <p class="city"><i class="fas fa-map-marker-alt"></i> Montevideo, UYU</p>
                     </div>
-                    <h1>GdlWebCamp</h1>
+                    <a href="index.php"><h1>GdlWebCamp</h1></a>
                     <p class="slogan">La mejor conferencia de <span>diseño web</span></p>
                 </div>
             </div><!-- .header-content -->

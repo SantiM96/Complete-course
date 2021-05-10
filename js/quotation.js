@@ -17,6 +17,14 @@
             }
             return total
         }
+        
+        function autoScroll(classOfElement, changePx = 0, time = 750) {
+            let position = $(`${classOfElement}`).offset().top
+            position += changePx
+            $("html, body").animate({
+                scrollTop: position
+            }, time)
+        }
    
 
         if (document.getElementById('all-day-pass')) {
@@ -220,13 +228,14 @@
                             swal({
                                 type: 'warning',
                                 text: 'Faltan los datos del usuario'
-                            }).catch(() => swal.close())
+                            }).catch(() => swal.close(autoScroll(".user-date", -100))).then((result) => {
+                                if (result) autoScroll(".user-date", -100)
+                            })
                         }
                     }
                     else { 
                         disabledButton(buttonRegister);
                     }
-        
         
                 }
             }

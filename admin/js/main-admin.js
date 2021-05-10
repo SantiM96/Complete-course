@@ -3,7 +3,7 @@
     document.addEventListener('DOMContentLoaded', function () {
 
         //global
-        if (document.getElementById('password-check')) { 
+        if (document.getElementById('password-check')) {
             let inputPass = document.querySelectorAll('.password'),
                 colorPass = document.querySelectorAll('.colorPass'),
                 messagePass = document.getElementById('password-result'),
@@ -47,7 +47,7 @@
             }
         }
 
-        function disableSelect(selectToDisable) { 
+        function disableSelect(selectToDisable) {
             selectToDisable.addEventListener('change', function () { 
                 if (this.value !== "") { 
                     this.childNodes[1].disabled = true
@@ -55,7 +55,7 @@
             })
         }
 
-        function formatGift(gift) { 
+        function formatGift(gift) {
             if (gift.value === "Pulsera") return 1
             if (gift.value === "Etiqueta") return 2
             if (gift.value === "Pluma") return 3
@@ -88,7 +88,7 @@
         /* Section Admin */ 
 
         //login to join the admin panel
-        if (url === "login.php") { 
+        if (url === "login.php") {
             const createButton = document.getElementById('submit')
             createButton.addEventListener('click', (e) => {
                 e.preventDefault()
@@ -152,7 +152,7 @@
         }
 
         //add admin
-        if (url === "admin-add.php" && document.getElementById('user')) { 
+        if (url === "admin-add.php" && document.getElementById('user')) {
             
             const addButton = document.querySelector('.card-footer button')
             addButton.addEventListener('click', function(e) { 
@@ -203,7 +203,11 @@
                                         type: 'success',
                                         title: 'Admin Creado',
                                         text: `El administrador ${answer.new_admin_user} se creó correctamente`
-                                    }).catch(() => swal.close())
+                                    }).catch(() => swal.close(window.location.href = "admin-list.php")).then((result) => {
+                                        if (result) {
+                                            window.location.href = "admin-list.php"
+                                        }
+                                    })
                                 }
                                 else {
                                     swal({
@@ -324,20 +328,21 @@
                         //return data
                         xhr.onload = function () {
                             if (this.status === 200) {
-                                
-                                console.log(JSON.parse(xhr.responseText))
-                                
-                                
                                 let answer = JSON.parse(xhr.responseText)
+
+                                console.log(answer)
 
                                 if (answer.answer === "success") {
                                     swal({
                                         type: 'success',
                                         title: 'Admin Modificado',
                                         text: 'Los cambios se guardaron correctamente'
-                                    }).catch(() => swal.close())
-
-                                    if (answer.id === answer.id_currently_admin && answer.new_permission !== answer.level_currently_admin || answer.password) { 
+                                    }).catch(() => swal.close(window.location.href = "admin-list.php")).then((result) => {
+                                        if (result) {
+                                            window.location.href = "admin-list.php"
+                                        }
+                                    })
+                                    if (answer.id === answer.id_currently_admin && answer.password === "updated") { 
                                         swal({
                                             type: 'success',
                                             title: 'Admin Modificado',
@@ -470,7 +475,7 @@
         /* Section Events */ 
         
         //add event
-        if (url === "event-add.php") { 
+        if (url === "event-add.php") {
             disableSelect(document.getElementById('create-event-category'))
             disableSelect(document.getElementById('create-event-guest'))
         
@@ -543,7 +548,7 @@
         }
 
         //edit event
-        if (url === "event-edit.php") { 
+        if (url === "event-edit.php") {
 
             let oldName = document.getElementById('event-name-edit').value,
                 oldDate = document.getElementById('date').value,
@@ -772,7 +777,7 @@
         }
 
         //edit category
-        if (url === "category-edit.php") { 
+        if (url === "category-edit.php") {
             let categoryId = document.querySelector('.card-footer button').value,
                 oldName = document.getElementById('category-event').value,
                 oldIcon = document.getElementById('icon').value,
@@ -928,10 +933,10 @@
 
         /* Section Guests */
         let sizeImageGlobal = 3000000,
-            sizeImageGlobalMb = 3
+            sizeImageGlobalMb = sizeImageGlobal / 1000000
 
         //add guests
-        if (url === "guests-add.php") { 
+        if (url === "guests-add.php") {
 
             //change "Seleccionar archivo" to url
             let statusFile = document.getElementById('guest-file')
@@ -1043,7 +1048,7 @@
         }
 
         //edit guests
-        if (url === "guests-edit.php") { 
+        if (url === "guests-edit.php") {
 
             //change "Seleccionar archivo" to url
             let statusFile = document.getElementById('guest-file')
@@ -1261,7 +1266,7 @@
         /* Section Register User */
         
         //add users
-        if (url === "user-add.php") { 
+        if (url === "user-add.php") {
             let addUserButton = document.querySelector('.card-footer button')
             addUserButton.addEventListener('click', function (e) {
                 e.preventDefault()
@@ -1331,10 +1336,11 @@
                 
                 //return data
                 xhr.onload = function () { 
-                    if (this.status === 200) { 
+                    if (this.status === 200) {
                         let answer = JSON.parse(xhr.responseText)
+                        console.log(answer)
 
-                        if (answer.answer == "success") { 
+                        if (answer.answer == "success") {
                             swal({
                                 type: 'success',
                                 title: 'Creado',
@@ -1344,6 +1350,13 @@
                                     window.location.href = "user-list.php"
                                 }
                             })
+                        }
+                        else {
+                            swal({
+                                type: 'error',
+                                title: 'Error',
+                                text: 'No pudimos cargar el usuario'
+                            }).catch(() => swal.close())
                         }
                         
                     }
@@ -1509,7 +1522,7 @@
         }
 
         //show events for each user and delete
-        if (url === "user-list.php") { 
+        if (url === "user-list.php") {
             //delegation to delete or show events
             const delegation = document.querySelector('#registers')
             delegation.addEventListener('click', function (e) {
