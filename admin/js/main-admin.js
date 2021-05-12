@@ -84,6 +84,12 @@
 
         //code according to each page
 
+        /* Dashboard */
+
+        let complement = document.querySelector(".d-none-lg"),
+            complementParent = complement.parentNode
+        if (window.innerWidth < 992) complementParent.removeChild(complement)
+
 
         /* Section Admin */ 
 

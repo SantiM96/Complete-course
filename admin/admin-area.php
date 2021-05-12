@@ -169,11 +169,11 @@
                             } 
                         ?>
                         <!-- small card -->
-                        <div class="small-box bg-indigo">
+                        <div class="small-box bg-warning">
                             <div class="inner">
                                 <h3><?php echo $gift_paid; ?></h3>
 
-                                <p>Plumas</p>
+                                <p>Plumas Pagas</p>
                             </div>
                             <div class="icon">
                                 <i class="fas fa-gift"></i>
@@ -197,7 +197,7 @@
                             <div class="inner">
                                 <h3><?php echo $gift_paid; ?></h3>
 
-                                <p>Pulseras</p>
+                                <p>Pulseras Pagas</p>
                             </div>
                             <div class="icon">
                                 <i class="fas fa-gift"></i>
@@ -221,10 +221,168 @@
                             <div class="inner">
                                 <h3><?php echo $gift_paid; ?></h3>
 
-                                <p>Etiquetas</p>
+                                <p>Etiquetas Pagas</p>
                             </div>
                             <div class="icon">
                                 <i class="fas fa-gift"></i>
+                            </div>
+                            <a href="user-list.php" class="small-box-footer"> Más Información <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+
+                    <div class="col-lg-4 col-6">
+                        <?php
+                            $users = $conn->query("SELECT * FROM registers WHERE gift = 3");
+
+                            $gift_paid = 0;
+                            while ($user = $users->fetch_assoc()) {
+                                $gift_paid += 1;
+                            } 
+                        ?>
+                        <!-- small card -->
+                        <div class="small-box bg-warning">
+                            <div class="inner">
+                                <h3><?php echo $gift_paid; ?></h3>
+
+                                <p>Plumas Totales</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-gift"></i>
+                            </div>
+                            <a href="user-list.php" class="small-box-footer"> Más Información <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+
+                    <div class="col-lg-4 col-6">
+                        <?php
+                            $users = $conn->query("SELECT * FROM registers WHERE gift = 1");
+
+                            $gift_paid = 0;
+                            while ($user = $users->fetch_assoc()) {
+                                $gift_paid += 1;
+                            } 
+                        ?>
+                        <!-- small card -->
+                        <div class="small-box bg-blue">
+                            <div class="inner">
+                                <h3><?php echo $gift_paid; ?></h3>
+
+                                <p>Pulseras Totales</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-gift"></i>
+                            </div>
+                            <a href="user-list.php" class="small-box-footer"> Más Información <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+
+                    <div class="col-lg-4 col-6">
+                        <?php
+                            $users = $conn->query("SELECT * FROM registers WHERE gift = 2");
+
+                            $gift_paid = 0;
+                            while ($user = $users->fetch_assoc()) {
+                                $gift_paid += 1;
+                            } 
+                        ?>
+                        <!-- small card -->
+                        <div class="small-box bg-teal">
+                            <div class="inner">
+                                <h3><?php echo $gift_paid; ?></h3>
+
+                                <p>Etiquetas Totales</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-gift"></i>
+                            </div>
+                            <a href="user-list.php" class="small-box-footer"> Más Información <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+
+                    <h2>Extras</h2>
+
+                    <?php
+                        $users = $conn->query("SELECT * FROM registers");
+                        
+                        while ($user = $users->fetch_assoc()) {
+                            $extras = json_decode($user['articles_pass']);
+                            if ($extras->shirts != NULL) {
+                                $total_shirts += $extras->shirts;
+                                if ($user['payed'] == "1" || strstr($user['total_amount'], 'debe')) $payed_shirts += $extras->shirts;
+                            }
+                            if ($extras->labels != NULL) {
+                                $total_labels += $extras->labels;
+                                if ($user['payed'] == "1" || strstr($user['total_amount'], 'debe')) $payed_labels += $extras->labels;
+                                
+                            }
+                        }
+                    ?>
+
+                    <div class="col-lg-4 col-6">
+                        <!-- small card -->
+                        <div class="small-box bg-cyan">
+                            <div class="inner">
+                                <h3><?php echo $payed_shirts; ?></h3>
+
+                                <p>Camisas Pagas</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-tshirt"></i>
+                            </div>
+                            <a href="user-list.php" class="small-box-footer"> Más Información <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+
+                    <div class="col-lg-4 col-6">
+                        <!-- small card -->
+                        <div class="small-box bg-teal">
+                            <div class="inner">
+                                <h3><?php echo $payed_labels; ?></h3>
+
+                                <p>Etiquetas Pagas</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-tags"></i>
+                            </div>
+                            <a href="user-list.php" class="small-box-footer"> Más Información <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+
+                    <div class="col-lg-4 col-6 d-none-lg"></div>
+
+                    <div class="col-lg-4 col-6">
+                        
+                        <!-- small card -->
+                        <div class="small-box bg-cyan">
+                            <div class="inner">
+                                <h3><?php echo $total_shirts; ?></h3>
+
+                                <p>Camisas Totales</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-tshirt"></i>
+                            </div>
+                            <a href="user-list.php" class="small-box-footer"> Más Información <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+
+                    <div class="col-lg-4 col-6">
+                        <!-- small card -->
+                        <div class="small-box bg-teal">
+                            <div class="inner">
+                                <h3><?php echo $total_labels; ?></h3>
+
+                                <p>Etiquetas Totales</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-tags"></i>
                             </div>
                             <a href="user-list.php" class="small-box-footer"> Más Información <i class="fas fa-arrow-circle-right"></i></a>
                         </div>

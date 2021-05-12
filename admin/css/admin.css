@@ -89,6 +89,12 @@
     margin: 0 0 .2rem .3rem;
     color: #575757;
 }
+@media (min-width: 992px) {
+    .d-none-lg {
+        display: none;
+    }
+}
+
 
 
 /** Admins **/
