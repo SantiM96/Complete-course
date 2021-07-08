@@ -1,5 +1,4 @@
 (function() {
-    'use strict';
     document.addEventListener('DOMContentLoaded', function () {
 
         //global
@@ -86,10 +85,11 @@
 
         /* Dashboard */
 
-        let complement = document.querySelector(".d-none-lg"),
-            complementParent = complement.parentNode
-        if (window.innerWidth < 992) complementParent.removeChild(complement)
-
+        if (document.querySelector(".d-none-lg")) {
+            let complement = document.querySelector(".d-none-lg"),
+                complementParent = complement.parentNode
+            if (window.innerWidth < 992) complementParent.removeChild(complement)
+        }
 
         /* Section Admin */ 
 
